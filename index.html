@@ -291,20 +291,109 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        /* ----- PORTFOLIO GALLERY ----- */
-        .portfolio-section {
-            padding: 5rem 10% 6rem 10%;
+        /* ----- SLIDE-UP PANELS ----- */
+        .slide-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--nav-height));
+            z-index: 50;
+            transform: translateY(100%);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
             background-color: var(--bg-color);
+            will-change: transform;
+        }
+        .slide-panel.active {
+            transform: translateY(0);
+        }
+
+        /* ----- PHOTOGRAPHY PANEL ----- */
+        .photo-hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), center/cover no-repeat;
+            position: relative;
+            color: white;
+            background-size: cover;
+            min-height: 600px;
+        }
+        .photo-title {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
             text-align: center;
         }
-        .portfolio-section h2 {
-            font-size: 3.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-            position: relative;
-            display: inline-block;
+        .photo-title h2 {
+            font-size: 4.2rem;
+            margin: 0;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-        .portfolio-section h2::after {
+        .photo-bottom-content {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .photo-bottom-content p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        .action-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        .portfolio-trigger {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .portfolio-trigger:hover { opacity: 0.7; }
+        .watch-text {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .scroll-arrow-icon { font-size: 2rem; animation: bounce 2s infinite; }
+
+        /* ----- PORTFOLIO GALLERY (inside Photography panel) ----- */
+        .photo-portfolio-section {
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            padding: 4rem 10% 5rem 10%;
+        }
+        .photo-portfolio-section h3 {
+            font-size: 3rem;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        .photo-portfolio-section h3::after {
             content: '';
             position: absolute;
             bottom: -10px;
@@ -316,13 +405,13 @@
         }
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
         .portfolio-grid img {
             width: 100%;
-            height: 260px;
+            height: 380px;
             object-fit: cover;
             border-radius: 16px;
             cursor: pointer;
@@ -415,94 +504,6 @@
             font-size: 1rem;
             letter-spacing: 2px;
         }
-
-        /* ----- SLIDE-UP PANELS ----- */
-        .slide-panel {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - var(--nav-height));
-            z-index: 50;
-            transform: translateY(100%);
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-            overflow-y: auto;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            background-color: var(--bg-color);
-            will-change: transform;
-        }
-        .slide-panel.active {
-            transform: translateY(0);
-        }
-
-        /* ----- PHOTOGRAPHY PANEL ----- */
-        .photo-hero {
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), center/cover no-repeat;
-            position: relative;
-            color: white;
-            background-size: cover;
-        }
-        .photo-title {
-            position: absolute;
-            top: 15%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            text-align: center;
-        }
-        .photo-title h2 {
-            font-size: 4.2rem;
-            margin: 0;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        .photo-bottom-content {
-            position: absolute;
-            bottom: 2rem;
-            left: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-        .photo-bottom-content p {
-            font-size: 1.1rem;
-            font-weight: 300;
-            max-width: 800px;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        .action-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-        .portfolio-trigger {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: white;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-        .portfolio-trigger:hover { opacity: 0.7; }
-        .watch-text {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        .scroll-arrow-icon { font-size: 2rem; animation: bounce 2s infinite; }
 
         /* ----- BTS PANEL ----- */
         .bts-hero {
@@ -962,12 +963,14 @@
             .blog-header h2 { font-size: 3.2rem; }
             .right-panel { max-width: 100%; padding: 0 1.5rem 2rem; }
             .blog-gallery { grid-template-columns: 1fr; }
-            .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+            .portfolio-grid img { height: 300px; }
             .video-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.4rem; }
-            .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .portfolio-grid img { height: 220px; }
             .video-grid { grid-template-columns: 1fr 1fr; }
             .video-wrapper { aspect-ratio: 9 / 16; }
             .logo-img { height: 38px; }
@@ -1012,14 +1015,6 @@
         <a href="#" class="page-btn" id="home-contact-btn">View The Chapter</a>
     </header>
 
-    <!-- ===== PORTFOLIO GALLERY (below hero) ===== -->
-    <section class="portfolio-section" id="portfolio-section">
-        <h2>Our Portfolio</h2>
-        <div class="portfolio-grid" id="portfolio-grid">
-            <!-- Rendered by JavaScript -->
-        </div>
-    </section>
-
     <!-- ===== PHOTOGRAPHY PANEL ===== -->
     <div class="slide-panel" id="photography-page">
         <div class="photo-hero" id="photo-hero">
@@ -1035,8 +1030,12 @@
                 </div>
             </div>
         </div>
-        <div class="photo-portfolio" style="min-height:100vh; background-color:var(--bg-color); display:flex; justify-content:center; align-items:flex-start; padding:5rem 10%;">
-            <h3 style="font-size:3rem; color:var(--text-color); text-align:center; width:100%;">Recent Stories</h3>
+        <!-- Portfolio Gallery now lives here -->
+        <div class="photo-portfolio-section" id="photo-portfolio-section">
+            <h3>Our Portfolio</h3>
+            <div class="portfolio-grid" id="portfolio-grid">
+                <!-- Rendered by JavaScript -->
+            </div>
         </div>
     </div>
 
@@ -1229,6 +1228,8 @@
             contactPanel.classList.remove('active');
             navBar.classList.remove('nav-inverted');
             closeMobileMenu();
+            // Pause all BTS videos when closing BTS page
+            pauseAllBTSVideos();
         }
 
         function openPanel(panelId) {
@@ -1245,6 +1246,13 @@
                 panel.classList.add('active');
                 navBar.classList.add('nav-inverted');
                 saveActivePanel(panelId);
+                // If BTS panel is opened, initialise video visibility
+                if (panelId === 'bts') {
+                    setTimeout(() => {
+                        initBTSObservers();
+                        playVisibleBTSVideos();
+                    }, 300);
+                }
             } else {
                 saveActivePanel(null);
             }
@@ -1282,9 +1290,25 @@
             if (e.target === blogModal) blogModal.classList.remove('active');
         });
 
+        // Watch Portfolio button: opens photography panel and scrolls to portfolio
         scrollArrow.addEventListener('click', (e) => {
             e.preventDefault();
-            document.getElementById('portfolio-section').scrollIntoView({ behavior: 'smooth' });
+            // If photography panel is already active, just scroll
+            if (photoPage.classList.contains('active')) {
+                const grid = document.getElementById('portfolio-grid');
+                if (grid) {
+                    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else {
+                // Open panel, then scroll after transition
+                openPanel('photography');
+                setTimeout(() => {
+                    const grid = document.getElementById('portfolio-grid');
+                    if (grid) {
+                        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 500);
+            }
         });
 
         // Mobile menu
@@ -1382,42 +1406,107 @@
         });
 
         // ============================================================
-        //  BTS VIDEO SOUND TOGGLE
+        //  BTS VIDEO MANAGEMENT
         // ============================================================
-        // We'll handle via event delegation on the btsGrid
-        btsGrid.addEventListener('click', (e) => {
-            const wrapper = e.target.closest('.video-wrapper');
-            if (!wrapper) return;
-            const video = wrapper.querySelector('video');
-            const soundIcon = wrapper.querySelector('.sound-icon');
-            if (video) {
-                video.muted = !video.muted;
-                if (soundIcon) soundIcon.textContent = video.muted ? '🔇' : '🔊';
-                video.dataset.manualUnmuted = video.muted ? 'false' : 'true';
-            }
-        });
+        let btsObservers = [];
 
-        btsGrid.addEventListener('mouseenter', (e) => {
-            const wrapper = e.target.closest('.video-wrapper');
-            if (!wrapper) return;
-            const video = wrapper.querySelector('video');
-            const soundIcon = wrapper.querySelector('.sound-icon');
-            if (video && video.muted && video.dataset.manualUnmuted !== 'true') {
-                video.muted = false;
-                if (soundIcon) soundIcon.textContent = '🔊';
-            }
-        }, true);
+        function getAllBTSVideos() {
+            return document.querySelectorAll('#bts-grid video');
+        }
 
-        btsGrid.addEventListener('mouseleave', (e) => {
-            const wrapper = e.target.closest('.video-wrapper');
-            if (!wrapper) return;
-            const video = wrapper.querySelector('video');
-            const soundIcon = wrapper.querySelector('.sound-icon');
-            if (video && video.dataset.manualUnmuted !== 'true' && !video.muted) {
-                video.muted = true;
-                if (soundIcon) soundIcon.textContent = '🔇';
+        function pauseAllBTSVideos() {
+            const videos = getAllBTSVideos();
+            videos.forEach(v => {
+                v.pause();
+                v.currentTime = 0; // reset to start
+            });
+            // Disconnect observers to avoid memory leaks
+            btsObservers.forEach(obs => obs.disconnect());
+            btsObservers = [];
+        }
+
+        function playVisibleBTSVideos() {
+            const videos = getAllBTSVideos();
+            const panel = btsPage;
+            const isActive = panel.classList.contains('active');
+
+            videos.forEach(v => {
+                const rect = v.getBoundingClientRect();
+                const isVisible = (
+                    rect.top < window.innerHeight - 100 &&
+                    rect.bottom > 100 &&
+                    rect.left < window.innerWidth - 100 &&
+                    rect.right > 100
+                );
+                if (isActive && isVisible) {
+                    v.play().catch(() => {});
+                } else {
+                    v.pause();
+                }
+            });
+        }
+
+        function initBTSObservers() {
+            // Clean up old observers
+            btsObservers.forEach(obs => obs.disconnect());
+            btsObservers = [];
+
+            const videos = getAllBTSVideos();
+            if (videos.length === 0) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                const panel = btsPage;
+                const isActive = panel.classList.contains('active');
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (isActive && entry.isIntersecting) {
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.3, rootMargin: '0px 0px 50px 0px' });
+
+            videos.forEach(v => observer.observe(v));
+            btsObservers.push(observer);
+
+            // Also observe the grid itself to detect panel scroll
+            const grid = document.getElementById('bts-grid');
+            if (grid) {
+                const scrollObserver = new IntersectionObserver(() => {
+                    if (btsPage.classList.contains('active')) {
+                        playVisibleBTSVideos();
+                    }
+                }, { root: btsPage, threshold: 0.1 });
+                scrollObserver.observe(grid);
+                btsObservers.push(scrollObserver);
             }
-        }, true);
+
+            // Visibility change: pause all if tab hidden
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    pauseAllBTSVideos();
+                } else {
+                    if (btsPage.classList.contains('active')) {
+                        playVisibleBTSVideos();
+                    }
+                }
+            }, { once: false });
+
+            // Scroll listener inside BTS panel to refresh visibility
+            btsPage.addEventListener('scroll', () => {
+                if (btsPage.classList.contains('active')) {
+                    playVisibleBTSVideos();
+                }
+            }, { passive: true });
+        }
+
+        // Override closeAllPanels to also handle BTS
+        const originalCloseAllPanels = closeAllPanels;
+        closeAllPanels = function() {
+            originalCloseAllPanels();
+            pauseAllBTSVideos();
+        };
 
         // ============================================================
         //  CONTACT FORM – AJAX
@@ -1492,91 +1581,91 @@
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port1/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port1/800/600',
             Title: 'Golden Hour',
             Order: '1'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port2/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port2/800/600',
             Title: 'Intimate',
             Order: '2'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port3/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port3/800/600',
             Title: 'Elegance',
             Order: '3'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port4/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port4/800/600',
             Title: 'Radiance',
             Order: '4'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port5/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port5/800/600',
             Title: 'Vows',
             Order: '5'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port6/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port6/800/600',
             Title: 'Confetti',
             Order: '6'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port7/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port7/800/600',
             Title: 'Sunset',
             Order: '7'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port8/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port8/800/600',
             Title: 'First Dance',
             Order: '8'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port9/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port9/800/600',
             Title: 'Floral',
             Order: '9'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port10/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port10/800/600',
             Title: 'The Exit',
             Order: '10'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port11/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port11/800/600',
             Title: 'Getting Ready',
             Order: '11'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port12/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port12/800/600',
             Title: 'Reception',
             Order: '12'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port13/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port13/800/600',
             Title: 'Forever',
             Order: '13'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port14/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port14/800/600',
             Title: 'Candid',
             Order: '14'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
-            MediaUrl: 'https://picsum.photos/seed/port15/600/400',
+            MediaUrl: 'https://picsum.photos/seed/port15/800/600',
             Title: 'Editorial',
             Order: '15'
         }, {
@@ -1646,11 +1735,9 @@
                     const result = Papa.parse(csvText, { header: true, skipEmptyLines: true });
                     if (result.errors.length) console.warn('CSV parsing errors:', result.errors);
                     allData = result.data;
-                    // Filter out empty rows
                     allData = allData.filter(row => row.Type && row.Type.trim());
                     if (allData.length === 0) {
-                        // If sheet is empty, use fallback
-                        console.log('Sheet empty, using fallback data');
+                        console.log('Sheet empty, using fallback');
                         allData = FALLBACK_DATA;
                     }
                     renderAll();
@@ -1679,7 +1766,7 @@
                     `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('${photoBgRow.MediaUrl}')`;
             }
 
-            // 3. PORTFOLIO GALLERY
+            // 3. PORTFOLIO GALLERY (now inside Photography panel)
             const portfolioRows = allData
                 .filter(row => row.Type && row.Type.trim().toLowerCase() === 'portfolio' && row.Location && row.Location
                     .trim().toLowerCase() === 'gallery' && row.MediaUrl)
@@ -1724,6 +1811,13 @@
                     `;
                     btsGrid.appendChild(wrapper);
                 });
+                // Initialise BTS observers after videos are added
+                setTimeout(() => {
+                    if (btsPage.classList.contains('active')) {
+                        initBTSObservers();
+                        playVisibleBTSVideos();
+                    }
+                }, 200);
             }
 
             // 5. STORIES
@@ -1797,6 +1891,43 @@
             `;
             blogModal.classList.add('active');
         }
+
+        // ============================================================
+        //  BTS VIDEO SOUND TOGGLE (Event Delegation)
+        // ============================================================
+        btsGrid.addEventListener('click', (e) => {
+            const wrapper = e.target.closest('.video-wrapper');
+            if (!wrapper) return;
+            const video = wrapper.querySelector('video');
+            const soundIcon = wrapper.querySelector('.sound-icon');
+            if (video) {
+                video.muted = !video.muted;
+                if (soundIcon) soundIcon.textContent = video.muted ? '🔇' : '🔊';
+                video.dataset.manualUnmuted = video.muted ? 'false' : 'true';
+            }
+        });
+
+        btsGrid.addEventListener('mouseenter', (e) => {
+            const wrapper = e.target.closest('.video-wrapper');
+            if (!wrapper) return;
+            const video = wrapper.querySelector('video');
+            const soundIcon = wrapper.querySelector('.sound-icon');
+            if (video && video.muted && video.dataset.manualUnmuted !== 'true') {
+                video.muted = false;
+                if (soundIcon) soundIcon.textContent = '🔊';
+            }
+        }, true);
+
+        btsGrid.addEventListener('mouseleave', (e) => {
+            const wrapper = e.target.closest('.video-wrapper');
+            if (!wrapper) return;
+            const video = wrapper.querySelector('video');
+            const soundIcon = wrapper.querySelector('.sound-icon');
+            if (video && video.dataset.manualUnmuted !== 'true' && !video.muted) {
+                video.muted = true;
+                if (soundIcon) soundIcon.textContent = '🔇';
+            }
+        }, true);
 
         // ============================================================
         //  RESTORE STATE ON LOAD
