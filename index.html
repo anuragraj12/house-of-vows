@@ -509,10 +509,7 @@
         </div>
         <div class="nav-right">
             <a href="#about" class="text-link">About Us</a>
-            <form action="https://formspree.io/f/mgobgqve" method="POST" style="display:inline; margin:0; padding:0;">
-                <input type="email" name="email" placeholder="Your Email" required style="padding:10px 15px; border:1px solid white; background:transparent; color:white; font-size:0.9rem; width:200px; outline:none; border-radius:0;">
-                <button type="submit" class="nav-btn" style="padding:0.8rem 2rem; background:transparent; border:1px solid white; color:white; text-transform:uppercase; letter-spacing:2px; font-size:0.9rem; cursor:pointer; transition:all 0.3s ease;">Contact</button>
-            </form>
+            <a id="contact-link" class="nav-btn" style="cursor:pointer;">Contact</a>
         </div>
     </nav>
 
@@ -582,7 +579,59 @@
         </div>
     </div>
 
-    <!-- 4. Blog Pop-Up Overlay (Anurag & Garima) -->
+    <!-- 4. The Slide-Up Contact Page -->
+    <div class="slide-panel" id="contact-page">
+        <div style="min-height:100%; padding:4rem 10% 5rem 10%; display:flex; flex-direction:column; align-items:center; text-align:center; background-color:var(--bg-color);">
+            <h2 style="font-size:3.5rem; color:var(--text-color); margin-bottom:0.5rem; font-family:'Playfair Display',serif;">Plan Your Chapter</h2>
+            <p style="font-size:1.1rem; font-weight:300; max-width:700px; color:var(--text-color); margin-bottom:2rem;">Tell us your vision, and we'll capture it flawlessly.</p>
+            
+            <form action="https://formspree.io/f/mgobgqve" method="POST" style="max-width:600px; width:100%; display:flex; flex-direction:column; gap:1.5rem; text-align:left;">
+                
+                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                    <input type="text" name="bride_name" placeholder="Bride's Name" required style="flex:1; padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem; min-width:150px;">
+                    <input type="text" name="groom_name" placeholder="Groom's Name" required style="flex:1; padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem; min-width:150px;">
+                </div>
+
+                <select name="service_interest" required style="padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem; color:#333;">
+                    <option value="">What are you looking for?</option>
+                    <option value="BTS">BTS (Behind the Scenes)</option>
+                    <option value="Pre-Wedding">Pre-Wedding Shoot</option>
+                    <option value="Full Coverage">Full Wedding Coverage</option>
+                    <option value="Cinematic Film">Cinematic Film</option>
+                    <option value="Destination Wedding">Destination Wedding</option>
+                </select>
+
+                <div>
+                    <label style="display:block; margin-bottom:5px; font-weight:400; color:var(--text-color); font-size:0.95rem;">Is the marriage date confirmed?</label>
+                    <select id="dateConfirmed" name="dateConfirmed" style="width:100%; padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem; color:#333;">
+                        <option value="">Select...</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No, it's tentative</option>
+                    </select>
+                </div>
+
+                <div id="confirmedDateField" style="display:none;">
+                    <label style="display:block; margin-bottom:5px; font-weight:400; color:var(--text-color); font-size:0.95rem;">Confirmed Date</label>
+                    <input type="date" name="confirmed_date" style="width:100%; padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem;">
+                </div>
+
+                <div id="tentativeDateField" style="display:none;">
+                    <label style="display:block; margin-bottom:5px; font-weight:400; color:var(--text-color); font-size:0.95rem;">Tentative Date (Month/Year)</label>
+                    <input type="text" name="tentative_date" placeholder="e.g., December 2026" style="width:100%; padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem;">
+                </div>
+
+                <input type="tel" name="mobile" placeholder="Mobile Number" required style="padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem;">
+
+                <input type="text" name="best_time" placeholder="Best time to reach out (e.g., Evening 6-9 PM)" style="padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem;">
+
+                <input type="email" name="email" placeholder="Your Email Address" required style="padding:12px 15px; background:white; border:1px solid #ddd; outline:none; font-size:1rem;">
+
+                <button type="submit" class="page-btn" style="background:var(--text-color); color:white; border:none; padding:1rem; font-size:1rem; letter-spacing:2px; cursor:pointer; transition:0.3s; border-radius:0;">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 5. Blog Pop-Up Overlay (Anurag & Garima) -->
     <div class="blog-modal" id="blog-modal">
         <div class="close-blog" id="close-blog-btn">&times;</div>
         
@@ -653,6 +702,9 @@
 
         const storiesLink = document.getElementById('stories-link');
         const storiesPage = document.getElementById('stories-page');
+
+        const contactLink = document.getElementById('contact-link');
+        const contactPage = document.getElementById('contact-page');
         
         const scrollArrow = document.getElementById('scroll-arrow');
         const portfolioSection = document.getElementById('portfolio-section');
@@ -666,6 +718,7 @@
             photoPage.classList.remove('active');
             btsPage.classList.remove('active');
             storiesPage.classList.remove('active');
+            if (contactPage) contactPage.classList.remove('active');
             navBar.classList.remove('nav-inverted');
         }
 
@@ -682,6 +735,12 @@
         storiesLink.addEventListener('click', function(e) {
             e.preventDefault(); closeAllPanels();
             setTimeout(() => { storiesPage.classList.add('active'); navBar.classList.add('nav-inverted'); }, 50);
+        });
+
+        contactLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeAllPanels();
+            setTimeout(() => { contactPage.classList.add('active'); navBar.classList.add('nav-inverted'); }, 50);
         });
 
         homeLink.addEventListener('click', function(e) { closeAllPanels(); });
@@ -708,6 +767,26 @@
             wrapper.addEventListener('mouseenter', () => { if (video) video.muted = false; });
             wrapper.addEventListener('mouseleave', () => { if (video) video.muted = true; });
         });
+
+        // --- Date toggle logic ---
+        const confirmedSelect = document.getElementById('dateConfirmed');
+        const confirmedDiv = document.getElementById('confirmedDateField');
+        const tentativeDiv = document.getElementById('tentativeDateField');
+
+        if (confirmedSelect) {
+            confirmedSelect.addEventListener('change', function() {
+                if (this.value === 'yes') {
+                    confirmedDiv.style.display = 'block';
+                    tentativeDiv.style.display = 'none';
+                } else if (this.value === 'no') {
+                    confirmedDiv.style.display = 'none';
+                    tentativeDiv.style.display = 'block';
+                } else {
+                    confirmedDiv.style.display = 'none';
+                    tentativeDiv.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>
