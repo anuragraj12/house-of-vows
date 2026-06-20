@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR_USERNAME/house-of-vows
+  repo: anuragraj12/house-of-vows
   branch: main
 
 media_folder: "images/uploads"
