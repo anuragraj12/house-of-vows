@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding Chapter | Editorial & BTS</title>
+    <style>
+        /* Importing premium, editorial Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap');
+
+        /* Global Variables for Layout */
+        :root {
+            --bg-color: #FAFAFA; 
+            --text-color: #1C1C1C; 
+            --nav-height: 120px; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow: hidden; 
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        nav {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            padding: 0 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100; 
+            background: linear-gradient(rgba(0,0,0,0.5), transparent); 
+            transition: background 2.7s ease; 
+        }
+
+        nav.nav-inverted {
+            background: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        }
+
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 0.9;
+            transition: color 2.7s ease, opacity 0.3s ease;
+        }
+
+        .logo-text span {
+            font-size: 3.5rem; 
+            margin-left: 40px; 
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5vw; 
+            flex: 1; 
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 3vw; 
+        }
+
+        .nav-center a, .nav-right a.text-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: color 2.7s ease, opacity 0.3s ease;
+        }
+
+        .nav-center a:hover, .nav-right a.text-link:hover, .logo-text:hover {
+            opacity: 0.7;
+        }
+
+        nav.nav-inverted .logo-text, 
+        nav.nav-inverted .nav-center a, 
+        nav.nav-inverted .nav-right a.text-link {
+            color: var(--text-color);
+        }
+
+        .nav-btn {
+            padding: 1rem 2.5rem;
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1rem; 
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease, color 2.7s ease, border-color 2.7s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: white;
+            color: var(--text-color);
+        }
+
+        nav.nav-inverted .nav-btn {
+            color: var(--text-color);
+            border-color: var(--text-color);
+        }
+
+        nav.nav-inverted .nav-btn:hover {
+            background-color: var(--text-color);
+            color: white;
+        }
+
+        /* --- HOME PAGE HERO --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('Image1.jpg') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            max-width: 600px;
+        }
+
+        .page-btn {
+            padding: 1rem 2.5rem;
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1rem; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .page-btn:hover {
+            background-color: white;
+            color: var(--text-color);
+        }
+
+        /* --- SLIDE-UP PANELS SHARED CSS --- */
+        .slide-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--nav-height)); 
+            z-index: 50;
+            transform: translateY(100%); 
+            transition: transform 2.7s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow-y: auto; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: var(--bg-color); 
+        }
+
+        .slide-panel.active {
+            transform: translateY(0);
+        }
+
+        /* --- PHOTOGRAPHY PANEL --- */
+        .photo-hero {
+            height: 100%; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('image2.jpg') center/cover;
+            position: relative;
+            color: white;
+        }
+
+        .photo-title {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+        }
+
+        .photo-title h2 { font-size: 4rem; margin: 0; }
+
+        .photo-bottom-content {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .photo-bottom-content p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .action-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .portfolio-trigger {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-trigger:hover { opacity: 0.7; }
+        .watch-text { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .scroll-arrow-icon { font-size: 2rem; animation: bounce 2s infinite; }
+
+        .photo-portfolio {
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 5rem 10%;
+        }
+
+        .photo-portfolio h3 {
+            font-size: 3rem;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        /* --- BTS PANEL --- */
+        .bts-hero {
+            min-height: 100%;
+            padding: 4rem 10% 5rem 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bts-hero h2 { font-size: 3.5rem; color: var(--text-color); margin-bottom: 1rem; }
+        .bts-hero p { font-size: 1.1rem; font-weight: 300; max-width: 700px; color: var(--text-color); margin-bottom: 4rem; }
+
+        .video-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .video-wrapper {
+            width: 320px;
+            height: 568px; 
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: #000;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease, z-index 0.5s ease;
+            cursor: pointer;
+        }
+
+        .video-wrapper:hover {
+            transform: scale(1.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- STORIES PANEL (Themes Blank Page) --- */
+        .stories-container {
+            min-height: 100%;
+            padding: 4rem 10% 5rem 10%;
+            background-color: var(--bg-color); /* Themed Blank Canvas */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stories-container h2 {
+            font-size: 3.5rem;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .story-card {
+            background: white;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .story-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .story-img-container {
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .story-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .story-card:hover .story-img-container img {
+            transform: scale(1.05);
+        }
+
+        /* --- BLOG OVERLAY / POP-UP PAGE --- */
+        .blog-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 200;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .blog-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .close-blog {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            font-size: 3rem;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 210;
+            line-height: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .close-blog:hover { transform: scale(1.2); }
+
+        .blog-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 20px 80px 20px;
+            color: var(--text-color);
+        }
+
+        .blog-header { text-align: center; margin-bottom: 4rem; }
+        .blog-header h2 { font-size: 4.5rem; margin-bottom: 1rem; }
+        .blog-header .meta { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        .blog-header .hashtag {
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #888;
+        }
+
+        .blog-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 10%;
+        }
+
+        .blog-full-img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            margin-bottom: 4rem;
+        }
+
+        .blog-section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-grid-2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .blog-grid-2x2 img, .blog-grid-2x2 video {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-center, .nav-right { display: none; } 
+            .logo-text { font-size: 1.8rem; } 
+            .logo-text span { font-size: 2.8rem; margin-left: 20px;}
+            .photo-title h2, .bts-hero h2, .stories-container h2 { font-size: 2.5rem; }
+            .blog-header h2 { font-size: 3rem; }
+            .blog-grid-2x2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Transparent Fixed Navbar -->
+    <nav id="main-nav">
+        <a href="#home" class="logo-text" id="home-link">
+            The Wedding<br>
+            <span>Chapter</span>
+        </a>
+        <div class="nav-center">
+            <a id="photo-link">Photography</a>
+            <a id="bts-link">BTS</a>
+            <a id="stories-link">Stories</a>
+        </div>
+        <div class="nav-right">
+            <a href="#about" class="text-link">About Us</a>
+            <a href="#contact" class="nav-btn">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Home Page View -->
+    <header class="hero" id="home">
+        <h1>Raw Moments.<br>Editorial Aesthetics.</h1>
+        <p>Redefining wedding storytelling with same-day digital diaries and timeless cinematic films.</p>
+        <a href="#contact" class="page-btn">View The Chapter</a>
+    </header>
+
+    <!-- 1. The Slide-Up Photography Page -->
+    <div class="slide-panel" id="photography-page">
+        <div class="photo-hero">
+            <div class="photo-title"><h2>The Photography Edit</h2></div>
+            <div class="photo-bottom-content">
+                <p>Timeless. Editorial. Unapologetically You.<br>We capture the grand legacy of your traditions and the fleeting, stolen glances in between.</p>
+                <div class="action-container">
+                    <a class="page-btn" id="close-photo-btn">Explore Packages</a>
+                    <a id="scroll-arrow" class="portfolio-trigger">
+                        <span class="watch-text">Watch Portfolio</span>
+                        <span class="scroll-arrow-icon">&#x2193;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="photo-portfolio" id="portfolio-section">
+            <h3>Recent Stories</h3>
+        </div>
+    </div>
+
+    <!-- 2. The Slide-Up BTS Page -->
+    <div class="slide-panel" id="bts-page">
+        <div class="bts-hero">
+            <h2>The Digital Diary</h2>
+            <p>Your personal paparazzi. We deliver viral-ready reels directly to your phone within 24 hours. Hover to experience.</p>
+            <div class="video-grid">
+                <div class="video-wrapper"><video src="bts1.mp4" autoplay loop muted playsinline></video></div>
+                <div class="video-wrapper"><video src="bts2.mp4" autoplay loop muted playsinline></video></div>
+                <div class="video-wrapper"><video src="bts3.mp4" autoplay loop muted playsinline></video></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. The Slide-Up Stories Page -->
+    <div class="slide-panel" id="stories-page">
+        <div class="stories-container">
+            <h2>Our Chapters</h2>
+            <div class="story-grid">
+                
+                <!-- Story Block: Anurag & Garima -->
+                <div class="story-card" id="open-ag-blog">
+                    <h3>Anurag & Garima</h3>
+                    <div class="story-img-container">
+                        <img src="image3.jpg" alt="Anurag and Garima Wedding">
+                    </div>
+                </div>
+                
+                <!-- Placeholder for future couples -->
+                <div class="story-card">
+                    <h3>Rohan & Aisha</h3>
+                    <div class="story-img-container">
+                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop" alt="Placeholder">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Blog Pop-Up Overlay (Anurag & Garima) -->
+    <div class="blog-modal" id="blog-modal">
+        <div class="close-blog" id="close-blog-btn">&times;</div>
+        
+        <div class="blog-content">
+            <!-- Blog Header -->
+            <div class="blog-header">
+                <h2>Anurag & Garima</h2>
+                <div class="meta">Destination Wedding | 26 May 2026</div>
+                <div class="hashtag">#GarimaFoundHerAnurag</div>
+            </div>
+
+            <!-- Couple Intro -->
+            <div class="blog-text">
+                A beautiful union of two souls deeply in love. Anurag and Garima's celebration was an incredible blend of raw emotion, modern editorial aesthetics, and grand traditions, making th[...]
+            </div>
+
+            <!-- Full Width Image -->
+            <img src="image4.jpg" alt="Anurag and Garima Main" class="blog-full-img">
+
+            <!-- Pre-Wedding Section -->
+            <h3 class="blog-section-title">The Prelude</h3>
+            <div class="blog-text">
+                Before the grand celebrations, we captured the quiet, stolen moments between the couple. The pre-wedding shoot was a pure reflection of their chemistry, shot with an editorial len[...]
+            </div>
+            <div class="blog-grid-2x2">
+                <img src="imagepre1.jpg" alt="Pre Wedding 1">
+                <img src="imagepre2.jpg" alt="Pre Wedding 2">
+                <img src="imagepre3.jpg" alt="Pre Wedding 3">
+                <img src="imagepre4.jpg" alt="Pre Wedding 4">
+            </div>
+
+            <!-- Venue & Decor Section -->
+            <h3 class="blog-section-title">The Canvas</h3>
+            <div class="blog-text">
+                Set against a breathtaking destination backdrop, the venue was transformed into an ethereal paradise. Every floral arrangement and drape was meticulously curated to match their vi[...]
+            </div>
+            <div class="blog-grid-2x2">
+                <img src="imagedec1.jpg" alt="Decor 1">
+                <img src="imagedec2.jpg" alt="Decor 2">
+                <img src="imagedec3.jpg" alt="Decor 3">
+                <img src="imagedec4.jpg" alt="Decor 4">
+            </div>
+
+            <!-- The Wedding Functions -->
+            <h3 class="blog-section-title">The Celebration</h3>
+            <div class="blog-text">
+                The energy of the sangeet, the vibrant colors of the haldi, and the sacred moments of the pheras were documented to preserve their legacy forever.
+            </div>
+            <div class="blog-grid-2x2">
+                <img src="func1.jpg" alt="Wedding Function 1" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop'">
+                <video src="func2.mp4" autoplay loop muted playsinline></video>
+                <img src="func3.jpg" alt="Wedding Function 3" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'">
+                <video src="func4.mp4" autoplay loop muted playsinline></video>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Transitions and Hover Audio -->
+    <script>
+        const navBar = document.getElementById('main-nav');
+        const homeLink = document.getElementById('home-link');
+        
+        const photoLink = document.getElementById('photo-link');
+        const photoPage = document.getElementById('photography-page');
+        
+        const btsLink = document.getElementById('bts-link');
+        const btsPage = document.getElementById('bts-page');
+
+        const storiesLink = document.getElementById('stories-link');
+        const storiesPage = document.getElementById('stories-page');
+        
+        const scrollArrow = document.getElementById('scroll-arrow');
+        const portfolioSection = document.getElementById('portfolio-section');
+
+        // Blog Modal Logic
+        const agBlogCard = document.getElementById('open-ag-blog');
+        const blogModal = document.getElementById('blog-modal');
+        const closeBlogBtn = document.getElementById('close-blog-btn');
+
+        function closeAllPanels() {
+            photoPage.classList.remove('active');
+            btsPage.classList.remove('active');
+            storiesPage.classList.remove('active');
+            navBar.classList.remove('nav-inverted');
+        }
+
+        photoLink.addEventListener('click', function(e) {
+            e.preventDefault(); closeAllPanels();
+            setTimeout(() => { photoPage.classList.add('active'); navBar.classList.add('nav-inverted'); }, 50);
+        });
+
+        btsLink.addEventListener('click', function(e) {
+            e.preventDefault(); closeAllPanels();
+            setTimeout(() => { btsPage.classList.add('active'); navBar.classList.add('nav-inverted'); }, 50);
+        });
+
+        storiesLink.addEventListener('click', function(e) {
+            e.preventDefault(); closeAllPanels();
+            setTimeout(() => { storiesPage.classList.add('active'); navBar.classList.add('nav-inverted'); }, 50);
+        });
+
+        homeLink.addEventListener('click', function(e) { closeAllPanels(); });
+
+        scrollArrow.addEventListener('click', function(e) {
+            e.preventDefault();
+            portfolioSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Open the Blog Modal when clicking the Story Card
+        agBlogCard.addEventListener('click', function() {
+            blogModal.classList.add('active');
+        });
+
+        // Close the Blog Modal
+        closeBlogBtn.addEventListener('click', function() {
+            blogModal.classList.remove('active');
+        });
+
+        // --- Video Hover Audio Logic ---
+        const videoWrappers = document.querySelectorAll('.video-wrapper');
+        videoWrappers.forEach(wrapper => {
+            const video = wrapper.querySelector('video');
+            wrapper.addEventListener('mouseenter', () => { if (video) video.muted = false; });
+            wrapper.addEventListener('mouseleave', () => { if (video) video.muted = true; });
+        });
+    </script>
+</body>
+</html>
