@@ -331,7 +331,7 @@
         .stories-container {
             min-height: 100%;
             padding: 4rem 10% 5rem 10%;
-            background-color: var(--bg-color); /* Themed Blank Canvas */
+            background-color: var(--bg-color);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -546,8 +546,8 @@
             <h2>The Digital Diary</h2>
             <p>Your personal paparazzi. We deliver viral-ready reels directly to your phone within 24 hours. Hover to experience.</p>
             <div class="video-grid">
-                <div class="video-wrapper"><video src="https://files.catbox.moe/lht3eg.mp4" crossorigin="anonymous" autoplay loop muted playsinline preload="auto"></video></div>
-                <div class="video-wrapper"><video src="https://files.catbox.moe/1m7sx2.mp4" autoplay loop muted playsinline preload="auto"></video></div>
+                <div class="video-wrapper"><video src="https://files.catbox.moe/9v5uxo.mp4" crossorigin="anonymous" autoplay loop muted playsinline preload="auto"></video></div>
+                <div class="video-wrapper"><video src="https://files.catbox.moe/0qxg6s.mp4" autoplay loop muted playsinline preload="auto"></video></div>
                 <div class="video-wrapper"><video src="https://files.catbox.moe/udrcd2.mp4" autoplay loop muted playsinline preload="auto"></video></div>
             </div>
         </div>
@@ -557,24 +557,8 @@
     <div class="slide-panel" id="stories-page">
         <div class="stories-container">
             <h2>Our Chapters</h2>
-            <div class="story-grid">
-                
-                <!-- Story Block: Anurag & Garima -->
-                <div class="story-card" id="open-ag-blog">
-                    <h3>Anurag & Garima</h3>
-                    <div class="story-img-container">
-                        <img src="house of vows/image3.jpg" alt="Anurag and Garima Wedding">
-                    </div>
-                </div>
-                
-                <!-- Placeholder for future couples -->
-                <div class="story-card">
-                    <h3>Rohan & Aisha</h3>
-                    <div class="story-img-container">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop" alt="Placeholder">
-                    </div>
-                </div>
-
+            <div class="story-grid" id="story-grid">
+                <!-- Stories will be loaded here from Google Sheets -->
             </div>
         </div>
     </div>
@@ -631,65 +615,15 @@
         </div>
     </div>
 
-    <!-- 5. Blog Pop-Up Overlay (Anurag & Garima) -->
+    <!-- 5. Blog Modal (dynamic content) -->
     <div class="blog-modal" id="blog-modal">
         <div class="close-blog" id="close-blog-btn">&times;</div>
-        
-        <div class="blog-content">
-            <!-- Blog Header -->
-            <div class="blog-header">
-                <h2>Anurag & Garima</h2>
-                <div class="meta">Destination Wedding | 26 May 2026</div>
-                <div class="hashtag">#GarimaFoundHerAnurag</div>
-            </div>
-
-            <!-- Couple Intro -->
-            <div class="blog-text">
-                A beautiful union of two souls deeply in love. Anurag and Garima's celebration was an incredible blend of raw emotion, modern editorial aesthetics, and grand traditions, making th[...]
-            </div>
-
-            <!-- Full Width Image -->
-            <img src="house of vows/image4.jpg" alt="Anurag and Garima Main" class="blog-full-img">
-
-            <!-- Pre-Wedding Section -->
-            <h3 class="blog-section-title">The Prelude</h3>
-            <div class="blog-text">
-                Before the grand celebrations, we captured the quiet, stolen moments between the couple. The pre-wedding shoot was a pure reflection of their chemistry, shot with an editorial len[...]
-            </div>
-            <div class="blog-grid-2x2">
-                <img src="house of vows/imagepre1.JPG" alt="Pre Wedding 1">
-                <img src="house of vows/imagepre2.JPG" alt="Pre Wedding 2">
-                <img src="house of vows/imagepre3.jpg" alt="Pre Wedding 3">
-                <img src="house of vows/imagepre4.jpg" alt="Pre Wedding 4">
-            </div>
-
-            <!-- Venue & Decor Section -->
-            <h3 class="blog-section-title">The Canvas</h3>
-            <div class="blog-text">
-                Set against a breathtaking destination backdrop, the venue was transformed into an ethereal paradise. Every floral arrangement and drape was meticulously curated to match their vi[...]
-            </div>
-            <div class="blog-grid-2x2">
-                <img src="house of vows/imagedec1.jpg" alt="Decor 1">
-                <img src="house of vows/imagedec2.jpg" alt="Decor 2">
-                <img src="house of vows/imagedec3.jpg" alt="Decor 3">
-                <img src="house of vows/imagedec4.jpg" alt="Decor 4">
-            </div>
-
-            <!-- The Wedding Functions -->
-            <h3 class="blog-section-title">The Celebration</h3>
-            <div class="blog-text">
-                The energy of the sangeet, the vibrant colors of the haldi, and the sacred moments of the pheras were documented to preserve their legacy forever.
-            </div>
-            <div class="blog-grid-2x2">
-                <img src="house of vows/func1.jpg" alt="Wedding Function 1" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop'">
-                <video src="house of vows/func2.mp4" autoplay loop muted playsinline></video>
-                <img src="house of vows/func3.jpg" alt="Wedding Function 3" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'">
-                <video src="house of vows/func4.mp4" autoplay loop muted playsinline></video>
-            </div>
+        <div class="blog-content" id="blog-content">
+            <!-- Content is populated by JavaScript -->
         </div>
     </div>
 
-    <!-- JavaScript for Transitions and Hover Audio -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script>
         const navBar = document.getElementById('main-nav');
         const homeLink = document.getElementById('home-link');
@@ -710,9 +644,9 @@
         const portfolioSection = document.getElementById('portfolio-section');
 
         // Blog Modal Logic
-        const agBlogCard = document.getElementById('open-ag-blog');
         const blogModal = document.getElementById('blog-modal');
         const closeBlogBtn = document.getElementById('close-blog-btn');
+        const blogContent = document.getElementById('blog-content');
 
         function closeAllPanels() {
             photoPage.classList.remove('active');
@@ -734,7 +668,11 @@
 
         storiesLink.addEventListener('click', function(e) {
             e.preventDefault(); closeAllPanels();
-            setTimeout(() => { storiesPage.classList.add('active'); navBar.classList.add('nav-inverted'); }, 50);
+            setTimeout(() => { 
+                storiesPage.classList.add('active'); 
+                navBar.classList.add('nav-inverted');
+                loadStories(); // Load stories when the panel opens
+            }, 50);
         });
 
         contactLink.addEventListener('click', function(e) {
@@ -750,14 +688,16 @@
             portfolioSection.scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Open the Blog Modal when clicking the Story Card
-        agBlogCard.addEventListener('click', function() {
-            blogModal.classList.add('active');
-        });
-
         // Close the Blog Modal
         closeBlogBtn.addEventListener('click', function() {
             blogModal.classList.remove('active');
+        });
+
+        // Close modal on outside click (optional)
+        blogModal.addEventListener('click', function(e) {
+            if (e.target === blogModal) {
+                blogModal.classList.remove('active');
+            }
         });
 
         // --- Video Hover Audio Logic ---
@@ -787,6 +727,87 @@
                 }
             });
         }
+
+        // ============================================================
+        // GOOGLE SHEETS INTEGRATION
+        // ============================================================
+        const SHEET_ID = '1dJYZH6ER-s2yPBCeSexDjrxUJflHVlUVkkQvD454E2w'; // <-- REPLACE WITH YOUR ACTUAL SHEET ID
+
+        function loadStories() {
+            const grid = document.getElementById('story-grid');
+            grid.innerHTML = '<p style="text-align:center; width:100%;">Loading stories...</p>';
+
+            const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
+
+            fetch(csvUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to fetch CSV');
+                    return response.text();
+                })
+                .then(csvText => {
+                    const result = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+                    if (result.errors.length > 0) {
+                        console.warn('CSV parsing errors:', result.errors);
+                    }
+                    const rows = result.data;
+                    if (rows.length === 0) {
+                        grid.innerHTML = '<p style="text-align:center; width:100%;">No stories found. Add some in your Google Sheet!</p>';
+                        return;
+                    }
+                    renderStoryCards(rows);
+                })
+                .catch(error => {
+                    console.error('Error loading stories:', error);
+                    grid.innerHTML = '<p style="text-align:center; width:100%; color:#999;">Could not load stories. Please check your Google Sheet is public and try again.</p>';
+                });
+        }
+
+        function renderStoryCards(rows) {
+            const grid = document.getElementById('story-grid');
+            grid.innerHTML = '';
+
+            rows.forEach((row, index) => {
+                const title = row.Title || 'Untitled';
+                const couple = row.Couple || 'A Wedding Story';
+                const cover = row.CoverImage || '';
+                const blogText = row.BlogText || 'No description available.';
+                const date = row.Date || '';
+
+                const card = document.createElement('div');
+                card.className = 'story-card';
+                card.innerHTML = `
+                    <h3>${couple}</h3>
+                    <div class="story-img-container">
+                        <img src="${cover}" alt="${couple}" onerror="this.src='https://via.placeholder.com/350x450?text=Image+Not+Found'">
+                    </div>
+                `;
+
+                // Open blog modal on click
+                card.addEventListener('click', function() {
+                    openBlogModal(title, couple, cover, blogText, date);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function openBlogModal(title, couple, cover, blogText, date) {
+            blogContent.innerHTML = `
+                <div class="blog-header">
+                    <h2>${couple}</h2>
+                    <div class="meta">${date ? date : 'A Wedding Story'}</div>
+                    <div class="hashtag">#${title.replace(/\s/g, '')}</div>
+                </div>
+                <div class="blog-text">
+                    ${blogText}
+                </div>
+                <img src="${cover}" alt="${couple}" class="blog-full-img" onerror="this.src='https://via.placeholder.com/1000x600?text=No+Image'">
+            `;
+            blogModal.classList.add('active');
+        }
+
+        // Load stories automatically if the Stories panel is active on page load (optional)
+        // We'll load it when the user clicks "Stories" in the nav.
     </script>
 </body>
 </html>
