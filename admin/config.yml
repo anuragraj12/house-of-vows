@@ -2,6 +2,9 @@ backend:
   name: github
   repo: anuragraj12/house-of-vows
   branch: main
+  site_url: https://YOUR_USERNAME.github.io/house-of-vows
+  base_url: https://YOUR_USERNAME.github.io
+  auth_endpoint: https://YOUR_USERNAME.github.io/house-of-vows
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
