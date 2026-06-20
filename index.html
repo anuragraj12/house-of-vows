@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>House Of Vows | Editorial & BTS</title>
     <style>
-        /* Importing premium, editorial Google Fonts */
+        /* ----- IMPORTS & VARIABLES ----- */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap');
 
-        /* Global Variables for Layout */
         :root {
             --bg-color: #FAFAFA;
             --text-color: #1C1C1C;
             --nav-height: 120px;
-            --overlay-z: 50;
+            --gold: #C9A96E;
+            --gold-light: #E8D5B5;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -35,7 +31,7 @@
             font-weight: 400;
         }
 
-        /* --- NAVIGATION BAR --- */
+        /* ----- NAVIGATION ----- */
         nav {
             position: fixed;
             top: 0;
@@ -50,12 +46,10 @@
             background: linear-gradient(rgba(0,0,0,0.5), transparent);
             transition: background 2.7s ease;
         }
-
         nav.nav-inverted {
             background: #FFFFFF;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-
         .logo-text {
             font-family: 'Great Vibes', cursive;
             font-size: 2.2rem;
@@ -68,12 +62,7 @@
             line-height: 0.9;
             transition: color 2.7s ease, opacity 0.3s ease;
         }
-
-        .logo-text span {
-            font-size: 3.5rem;
-            margin-left: 40px;
-        }
-
+        .logo-text span { font-size: 3.5rem; margin-left: 40px; }
         .nav-center {
             display: flex;
             justify-content: center;
@@ -81,13 +70,11 @@
             gap: 5vw;
             flex: 1;
         }
-
         .nav-right {
             display: flex;
             align-items: center;
             gap: 3vw;
         }
-
         .nav-center a, .nav-right a.text-link {
             color: white;
             text-decoration: none;
@@ -97,46 +84,39 @@
             cursor: pointer;
             transition: color 2.7s ease, opacity 0.3s ease;
         }
-
         .nav-center a:hover, .nav-right a.text-link:hover, .logo-text:hover {
             opacity: 0.7;
         }
-
         nav.nav-inverted .logo-text,
         nav.nav-inverted .nav-center a,
         nav.nav-inverted .nav-right a.text-link {
             color: var(--text-color);
         }
-
         .nav-btn {
             padding: 1rem 2.5rem;
-            background-color: transparent;
+            background: transparent;
             color: white;
             border: 1px solid white;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 1rem;
             cursor: pointer;
-            text-decoration: none;
             transition: all 0.3s ease, color 2.7s ease, border-color 2.7s ease;
         }
-
         .nav-btn:hover {
-            background-color: white;
+            background: white;
             color: var(--text-color);
         }
-
         nav.nav-inverted .nav-btn {
             color: var(--text-color);
             border-color: var(--text-color);
         }
-
         nav.nav-inverted .nav-btn:hover {
-            background-color: var(--text-color);
+            background: var(--text-color);
             color: white;
         }
 
-        /* --- HAMBURGER MENU (mobile) --- */
+        /* ----- HAMBURGER (mobile) ----- */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -154,14 +134,11 @@
             background: white;
             transition: 0.3s;
         }
-        nav.nav-inverted .hamburger span {
-            background: var(--text-color);
-        }
+        nav.nav-inverted .hamburger span { background: var(--text-color); }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-        /* Mobile Nav Overlay */
         .mobile-nav {
             position: fixed;
             top: 0;
@@ -176,9 +153,7 @@
             box-shadow: 2px 0 20px rgba(0,0,0,0.1);
             overflow-y: auto;
         }
-        .mobile-nav.open {
-            left: 0;
-        }
+        .mobile-nav.open { left: 0; }
         .mobile-nav a {
             display: block;
             padding: 15px 0;
@@ -189,9 +164,6 @@
             text-decoration: none;
             border-bottom: 1px solid #eee;
             cursor: pointer;
-        }
-        .mobile-nav a:last-child {
-            border-bottom: none;
         }
         .mobile-nav-overlay {
             position: fixed;
@@ -210,7 +182,7 @@
             visibility: visible;
         }
 
-        /* --- HOME PAGE HERO --- */
+        /* ----- HERO ----- */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('house of vows/Image1.JPG') center/cover;
@@ -222,14 +194,12 @@
             color: white;
             padding: 0 20px;
         }
-
         .hero h1 {
             font-size: 4.5rem;
             line-height: 1.1;
             margin-bottom: 1.5rem;
             max-width: 900px;
         }
-
         .hero p {
             font-size: 1.1rem;
             margin-bottom: 2.5rem;
@@ -237,10 +207,9 @@
             letter-spacing: 1px;
             max-width: 600px;
         }
-
         .page-btn {
             padding: 1rem 2.5rem;
-            background-color: transparent;
+            background: transparent;
             color: white;
             border: 1px solid white;
             text-transform: uppercase;
@@ -251,18 +220,18 @@
             text-decoration: none;
         }
         .page-btn:hover {
-            background-color: white;
+            background: white;
             color: var(--text-color);
         }
 
-        /* --- SLIDE-UP PANELS (original) --- */
+        /* ----- SLIDE-UP PANELS (Photography, BTS, Stories) ----- */
         .slide-panel {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: calc(100vh - var(--nav-height));
-            z-index: var(--overlay-z);
+            z-index: 50;
             transform: translateY(100%);
             transition: transform 2.7s cubic-bezier(0.77, 0, 0.175, 1);
             overflow-y: auto;
@@ -270,147 +239,15 @@
             scroll-behavior: smooth;
             background-color: var(--bg-color);
         }
+        .slide-panel.active { transform: translateY(0); }
 
-        .slide-panel.active {
-            transform: translateY(0);
-        }
-
-        /* --- RIGHT SLIDE PANEL (Contact) --- */
-        .right-panel {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            max-width: 600px;
-            height: 100vh;
-            background: #FFFFFF;
-            z-index: 60;
-            transform: translateX(100%);
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-            overflow-y: auto;
-            padding: 0 2rem 3rem;
-            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
-        }
-
-        .right-panel.active {
-            transform: translateX(0);
-        }
-
-        .right-panel .close-panel {
-            position: sticky;
-            top: 0;
-            background: white;
-            padding: 1.5rem 0 0.5rem;
-            text-align: right;
-            font-size: 2.5rem;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .right-panel h2 {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .right-panel .subhead {
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            color: #666;
-        }
-
-        .right-panel form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .right-panel form .field-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .right-panel form input,
-        .right-panel form select {
-            padding: 12px 15px;
-            background: #F5F5F5;
-            border: 1px solid #E0E0E0;
-            border-radius: 8px;
-            font-size: 1rem;
-            width: 100%;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        .right-panel form input:focus,
-        .right-panel form select:focus {
-            border-color: var(--text-color);
-        }
-
-        .right-panel form .field-group input {
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .right-panel form label {
-            font-weight: 400;
-            color: var(--text-color);
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .right-panel .submit-btn {
-            background: var(--text-color);
-            color: white;
-            border: none;
-            padding: 1rem;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
-        .right-panel .submit-btn:hover {
-            opacity: 0.8;
-        }
-
-        /* --- TOAST NOTIFICATION --- */
-        .toast {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            max-width: 400px;
-            background: #1C1C1C;
-            color: white;
-            padding: 1.2rem 2rem;
-            border-radius: 12px;
-            z-index: 999;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            pointer-events: none;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        /* --- PHOTOGRAPHY PANEL --- */
+        /* ----- PHOTOGRAPHY PANEL ----- */
         .photo-hero {
             height: 100%;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('house of vows/Image2.jpg') center/cover;
             position: relative;
             color: white;
         }
-
         .photo-title {
             position: absolute;
             top: 15%;
@@ -419,9 +256,7 @@
             width: 100%;
             text-align: center;
         }
-
         .photo-title h2 { font-size: 4rem; margin: 0; }
-
         .photo-bottom-content {
             position: absolute;
             bottom: 2rem;
@@ -433,7 +268,6 @@
             text-align: center;
             padding: 0 20px;
         }
-
         .photo-bottom-content p {
             font-size: 1.1rem;
             font-weight: 300;
@@ -441,14 +275,12 @@
             margin-bottom: 2rem;
             line-height: 1.8;
         }
-
         .action-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 2rem;
         }
-
         .portfolio-trigger {
             display: flex;
             flex-direction: column;
@@ -459,18 +291,14 @@
             cursor: pointer;
             transition: opacity 0.3s ease;
         }
-
         .portfolio-trigger:hover { opacity: 0.7; }
         .watch-text { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; }
-
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
         }
-
         .scroll-arrow-icon { font-size: 2rem; animation: bounce 2s infinite; }
-
         .photo-portfolio {
             min-height: 100vh;
             background-color: var(--bg-color);
@@ -479,7 +307,6 @@
             align-items: flex-start;
             padding: 5rem 10%;
         }
-
         .photo-portfolio h3 {
             font-size: 3rem;
             color: var(--text-color);
@@ -488,7 +315,7 @@
             width: 100%;
         }
 
-        /* --- BTS PANEL --- */
+        /* ----- BTS PANEL ----- */
         .bts-hero {
             min-height: 100%;
             padding: 4rem 10% 5rem 10%;
@@ -497,10 +324,8 @@
             align-items: center;
             text-align: center;
         }
-
         .bts-hero h2 { font-size: 3.5rem; color: var(--text-color); margin-bottom: 1rem; }
-        .bts-hero p { font-size: 1.1rem; font-weight: 300; max-width: 700px; color: var(--text-color); margin-bottom: 4rem; }
-
+        .bts-hero p { font-size: 1.1rem; font-weight: 300; max-width: 700px; margin-bottom: 4rem; }
         .video-grid {
             display: flex;
             justify-content: center;
@@ -508,7 +333,6 @@
             width: 100%;
             flex-wrap: wrap;
         }
-
         .video-wrapper {
             width: 320px;
             height: 568px;
@@ -517,20 +341,46 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             background: #000;
             position: relative;
-            z-index: 1;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease, z-index 0.5s ease;
             cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
         }
-
         .video-wrapper:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            z-index: 10;
+        }
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Unmute indicator */
+        .video-wrapper .unmute-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .video-wrapper:hover .unmute-hint { opacity: 1; }
+        .video-wrapper .sound-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 1.4rem;
+            opacity: 0.6;
+            pointer-events: none;
         }
 
-        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
-
-        /* --- STORIES PANEL --- */
+        /* ----- STORIES PANEL ----- */
         .stories-container {
             min-height: 100%;
             padding: 4rem 10% 5rem 10%;
@@ -539,13 +389,11 @@
             flex-direction: column;
             align-items: center;
         }
-
         .stories-container h2 {
             font-size: 3.5rem;
             color: var(--text-color);
             margin-bottom: 3rem;
         }
-
         .story-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -553,7 +401,6 @@
             width: 100%;
             max-width: 1200px;
         }
-
         .story-card {
             background: white;
             padding: 1.5rem;
@@ -562,37 +409,163 @@
             cursor: pointer;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-
         .story-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-
         .story-card h3 {
             font-size: 2rem;
             margin-bottom: 1rem;
             color: var(--text-color);
         }
-
         .story-img-container {
             width: 100%;
             height: 450px;
             overflow: hidden;
             background: #eee;
         }
-
         .story-img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
         }
-
         .story-card:hover .story-img-container img {
             transform: scale(1.05);
         }
 
-        /* --- BLOG MODAL (overlay) --- */
+        /* ----- RIGHT CONTACT PANEL (Premium Design) ----- */
+        .right-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 580px;
+            height: 100vh;
+            background: #FFFFFF;
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow-y: auto;
+            padding: 0 2.5rem 3rem;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.08);
+        }
+        .right-panel.active { transform: translateX(0); }
+        .right-panel .close-panel {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 1.5rem 0 0.5rem;
+            text-align: right;
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 2;
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        .right-panel .close-panel:hover { color: var(--text-color); }
+        .right-panel .panel-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 1rem;
+        }
+        .right-panel .panel-header h2 {
+            font-size: 2.8rem;
+            color: var(--text-color);
+            margin-bottom: 0.3rem;
+        }
+        .right-panel .panel-header .subhead {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: #888;
+            letter-spacing: 0.5px;
+        }
+        .right-panel form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        .right-panel .field-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .right-panel input,
+        .right-panel select {
+            padding: 14px 18px;
+            background: #F8F6F4;
+            border: 1px solid #E8E0D8;
+            border-radius: 10px;
+            font-size: 1rem;
+            width: 100%;
+            outline: none;
+            transition: border 0.3s, box-shadow 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .right-panel input:focus,
+        .right-panel select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+        }
+        .right-panel .field-group input {
+            flex: 1;
+            min-width: 150px;
+        }
+        .right-panel label {
+            font-weight: 400;
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+        .right-panel .submit-btn {
+            background: var(--text-color);
+            color: white;
+            border: none;
+            padding: 1.1rem;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .right-panel .submit-btn:hover {
+            background: #333;
+        }
+        .right-panel .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ----- TOAST ----- */
+        .toast {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            max-width: 420px;
+            background: var(--text-color);
+            color: white;
+            padding: 1.2rem 2rem;
+            border-radius: 14px;
+            z-index: 999;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+            font-size: 1rem;
+            line-height: 1.6;
+            border-left: 5px solid var(--gold);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* ----- BLOG MODAL ----- */
         .blog-modal {
             position: fixed;
             top: 0;
@@ -606,12 +579,10 @@
             visibility: hidden;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-
         .blog-modal.active {
             opacity: 1;
             visibility: visible;
         }
-
         .close-blog {
             position: sticky;
             top: 20px;
@@ -625,16 +596,13 @@
             background: var(--bg-color);
             padding: 0 10px;
         }
-
         .close-blog:hover { transform: scale(1.2); }
-
         .blog-content {
             max-width: 1000px;
             margin: 0 auto;
             padding: 100px 20px 80px 20px;
             color: var(--text-color);
         }
-
         .blog-header { text-align: center; margin-bottom: 4rem; }
         .blog-header h2 { font-size: 4.5rem; margin-bottom: 1rem; }
         .blog-header .meta {
@@ -643,15 +611,13 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             color: #555;
-            margin-bottom: 0.5rem;
         }
         .blog-header .hashtag {
             font-style: italic;
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
-            color: #888;
+            color: #999;
         }
-
         .blog-text {
             font-size: 1.15rem;
             line-height: 2;
@@ -660,51 +626,52 @@
             margin-bottom: 3rem;
             padding: 0 10%;
         }
-
         .blog-full-img {
             width: 100%;
             height: 600px;
             object-fit: cover;
             margin-bottom: 4rem;
+            border-radius: 12px;
         }
-
         .blog-section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-
         .blog-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
             margin-bottom: 3rem;
         }
-
         .blog-gallery img, .blog-gallery video {
             width: 100%;
             height: 300px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
-        /* Mobile Responsiveness */
+        /* ----- RESPONSIVE ----- */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 2.5rem; }
             .nav-center, .nav-right { display: none; }
             .hamburger { display: flex; }
             .logo-text { font-size: 1.8rem; }
-            .logo-text span { font-size: 2.8rem; margin-left: 20px;}
+            .logo-text span { font-size: 2.8rem; margin-left: 20px; }
             .photo-title h2, .bts-hero h2, .stories-container h2 { font-size: 2.5rem; }
             .blog-header h2 { font-size: 3rem; }
-            .right-panel { max-width: 100%; }
+            .right-panel { max-width: 100%; padding: 0 1.5rem 2rem; }
             .blog-gallery { grid-template-columns: 1fr; }
+            .video-wrapper { width: 280px; height: 500px; }
+        }
+        @media (max-width: 480px) {
+            .video-wrapper { width: 100%; height: 400px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Transparent Fixed Navbar -->
+    <!-- ===== NAVBAR ===== -->
     <nav id="main-nav">
         <a href="#home" class="logo-text" id="home-link">
             The Wedding<br>
@@ -716,10 +683,9 @@
             <a id="stories-link">Stories</a>
         </div>
         <div class="nav-right">
-            <a href="#about" class="text-link">About Us</a>
+            <a href="#" class="text-link" id="about-link">About Us</a>
             <a id="contact-link" class="nav-btn" style="cursor:pointer;">Contact</a>
         </div>
-        <!-- Hamburger for mobile -->
         <button class="hamburger" id="hamburger" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
@@ -735,14 +701,14 @@
     </div>
     <div class="mobile-nav-overlay" id="mobile-overlay"></div>
 
-    <!-- Main Home Page View -->
+    <!-- ===== HERO ===== -->
     <header class="hero" id="home">
         <h1>Raw Moments.<br>Editorial Aesthetics.</h1>
         <p>Redefining wedding storytelling with same-day digital diaries and timeless cinematic films.</p>
         <a href="#" class="page-btn" id="home-contact-btn">View The Chapter</a>
     </header>
 
-    <!-- 1. The Slide-Up Photography Page -->
+    <!-- ===== PHOTOGRAPHY PANEL ===== -->
     <div class="slide-panel" id="photography-page">
         <div class="photo-hero">
             <div class="photo-title"><h2>The Photography Edit</h2></div>
@@ -762,34 +728,48 @@
         </div>
     </div>
 
-    <!-- 2. The Slide-Up BTS Page -->
+    <!-- ===== BTS PANEL ===== -->
     <div class="slide-panel" id="bts-page">
         <div class="bts-hero">
             <h2>The Digital Diary</h2>
-            <p>Your personal paparazzi. We deliver viral-ready reels directly to your phone within 24 hours. Hover to experience.</p>
+            <p>Your personal paparazzi. We deliver viral-ready reels directly to your phone within 24 hours. <strong>Hover or click a video to toggle sound.</strong></p>
             <div class="video-grid">
-                <div class="video-wrapper"><video src="https://files.catbox.moe/lht3eg.mp4" crossorigin="anonymous" autoplay loop muted playsinline preload="auto"></video></div>
-                <div class="video-wrapper"><video src="https://files.catbox.moe/1m7sx2.mp4" autoplay loop muted playsinline preload="auto"></video></div>
-                <div class="video-wrapper"><video src="https://files.catbox.moe/udrcd2.mp4" autoplay loop muted playsinline preload="auto"></video></div>
+                <div class="video-wrapper">
+                    <video src="https://files.catbox.moe/lht3eg.mp4" crossorigin="anonymous" autoplay loop muted playsinline preload="auto"></video>
+                    <span class="sound-icon">🔇</span>
+                    <span class="unmute-hint">Hover or tap to unmute</span>
+                </div>
+                <div class="video-wrapper">
+                    <video src="https://files.catbox.moe/1m7sx2.mp4" autoplay loop muted playsinline preload="auto"></video>
+                    <span class="sound-icon">🔇</span>
+                    <span class="unmute-hint">Hover or tap to unmute</span>
+                </div>
+                <div class="video-wrapper">
+                    <video src="https://files.catbox.moe/udrcd2.mp4" autoplay loop muted playsinline preload="auto"></video>
+                    <span class="sound-icon">🔇</span>
+                    <span class="unmute-hint">Hover or tap to unmute</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- 3. The Slide-Up Stories Page (dynamic) -->
+    <!-- ===== STORIES PANEL (dynamic) ===== -->
     <div class="slide-panel" id="stories-page">
         <div class="stories-container">
             <h2>Our Chapters</h2>
             <div class="story-grid" id="story-grid">
-                <!-- Stories loaded from Google Sheets -->
+                <!-- Loaded from Google Sheets -->
             </div>
         </div>
     </div>
 
-    <!-- 4. Right Panel for Contact (slides from right) -->
+    <!-- ===== RIGHT CONTACT PANEL ===== -->
     <div class="right-panel" id="contact-panel">
         <div class="close-panel" id="close-contact">&times;</div>
-        <h2>Plan Your Chapter</h2>
-        <p class="subhead">Tell us your vision, and we'll capture it flawlessly.</p>
+        <div class="panel-header">
+            <h2>Plan Your Chapter</h2>
+            <p class="subhead">Tell us your vision, and we'll capture it flawlessly.</p>
+        </div>
 
         <form id="contact-form" action="https://formspree.io/f/mgobgqve" method="POST">
             <div class="field-group">
@@ -833,30 +813,28 @@
         </form>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">We would love to discuss more, our team will reach out to you shortly.</div>
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast">✨ We would love to discuss more – our team will reach out to you shortly.</div>
 
-    <!-- 5. Blog Modal (dynamic) -->
+    <!-- ===== BLOG MODAL (dynamic) ===== -->
     <div class="blog-modal" id="blog-modal">
         <div class="close-blog" id="close-blog-btn">&times;</div>
-        <div class="blog-content" id="blog-content">
-            <!-- Populated by JavaScript -->
-        </div>
+        <div class="blog-content" id="blog-content"></div>
     </div>
 
-    <!-- Include PapaParse for CSV parsing -->
+    <!-- PAPA PARSE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <script>
         // ============================================================
-        // CONFIGURATION – SET YOUR GOOGLE SHEET ID HERE
+        //  CONFIGURATION – YOU MUST SET YOUR GOOGLE SHEET ID HERE
         // ============================================================
-        // Replace with your actual sheet ID (the long string from your sheet URL)
-        // Example: '1ABC123xyz456'
-        const SHEET_ID = 'YOUR_SHEET_ID_HERE';
+        // Replace 'YOUR_SHEET_ID_HERE' with your actual Sheet ID.
+        // Example: const SHEET_ID = '1ABC123xyz456';
+        const SHEET_ID = '1dJYZH6ER-s2yPBCeSexDjrxUJflHVlUVkkQvD454E2w';   // <-- CHANGE THIS
 
         // ============================================================
-        // DOM REFS
+        //  DOM REFS
         // ============================================================
         const navBar = document.getElementById('main-nav');
         const homeLink = document.getElementById('home-link');
@@ -864,6 +842,7 @@
         const btsLink = document.getElementById('bts-link');
         const storiesLink = document.getElementById('stories-link');
         const contactLink = document.getElementById('contact-link');
+        const aboutLink = document.getElementById('about-link');
 
         const photoPage = document.getElementById('photography-page');
         const btsPage = document.getElementById('bts-page');
@@ -878,7 +857,6 @@
         const closeContactBtn = document.getElementById('close-contact');
         const toast = document.getElementById('toast');
 
-        // Mobile elements
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
         const mobileOverlay = document.getElementById('mobile-overlay');
@@ -886,17 +864,17 @@
         const mobileBtsLink = document.getElementById('mobile-bts-link');
         const mobileStoriesLink = document.getElementById('mobile-stories-link');
         const mobileContactLink = document.getElementById('mobile-contact-link');
+        const mobileAboutLink = document.getElementById('mobile-about-link');
 
         const storyGrid = document.getElementById('story-grid');
 
         // ============================================================
-        // STATE PERSISTENCE (sessionStorage)
+        //  STATE PERSISTENCE
         // ============================================================
         function saveActivePanel(panelId) {
             if (panelId) sessionStorage.setItem('activePanel', panelId);
             else sessionStorage.removeItem('activePanel');
         }
-
         function getStoredPanel() {
             return sessionStorage.getItem('activePanel');
         }
@@ -907,7 +885,6 @@
             storiesPage.classList.remove('active');
             contactPanel.classList.remove('active');
             navBar.classList.remove('nav-inverted');
-            // close mobile menu if open
             closeMobileMenu();
         }
 
@@ -921,7 +898,6 @@
             };
             const panel = panelMap[panelId];
             if (panel) {
-                // Special handling: for stories, load data before showing
                 if (panelId === 'stories') {
                     loadStories().then(() => {
                         panel.classList.add('active');
@@ -934,152 +910,95 @@
                     saveActivePanel(panelId);
                 }
             } else {
-                // home: close all and save none
                 saveActivePanel(null);
             }
         }
 
         // ============================================================
-        // NAVIGATION EVENTS
+        //  NAVIGATION EVENTS
         // ============================================================
-        photoLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            openPanel('photography');
-        });
-        btsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            openPanel('bts');
-        });
-        storiesLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            openPanel('stories');
-        });
-        contactLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            openPanel('contact');
-        });
-        homeLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeAllPanels();
-            saveActivePanel(null);
-        });
+        photoLink.addEventListener('click', (e) => { e.preventDefault(); openPanel('photography'); });
+        btsLink.addEventListener('click', (e) => { e.preventDefault(); openPanel('bts'); });
+        storiesLink.addEventListener('click', (e) => { e.preventDefault(); openPanel('stories'); });
+        contactLink.addEventListener('click', (e) => { e.preventDefault(); openPanel('contact'); });
+        homeLink.addEventListener('click', (e) => { e.preventDefault(); closeAllPanels(); saveActivePanel(null); });
+        aboutLink.addEventListener('click', (e) => { e.preventDefault(); closeAllPanels(); saveActivePanel(null); });
 
-        // Homepage "View The Chapter" button triggers contact panel
-        document.getElementById('home-contact-btn').addEventListener('click', function(e) {
+        document.getElementById('home-contact-btn').addEventListener('click', (e) => {
             e.preventDefault();
             openPanel('contact');
         });
 
-        // Close contact panel with X
-        closeContactBtn.addEventListener('click', function() {
-            closeAllPanels();
-            saveActivePanel(null);
-        });
-
-        // Close blog modal
-        closeBlogBtn.addEventListener('click', function() {
-            blogModal.classList.remove('active');
-        });
-        blogModal.addEventListener('click', function(e) {
+        closeContactBtn.addEventListener('click', () => { closeAllPanels(); saveActivePanel(null); });
+        closeBlogBtn.addEventListener('click', () => { blogModal.classList.remove('active'); });
+        blogModal.addEventListener('click', (e) => {
             if (e.target === blogModal) blogModal.classList.remove('active');
         });
 
-        // Scroll arrow on photography panel
-        scrollArrow.addEventListener('click', function(e) {
+        scrollArrow.addEventListener('click', (e) => {
             e.preventDefault();
             portfolioSection.scrollIntoView({ behavior: 'smooth' });
         });
 
-        // ============================================================
-        // MOBILE MENU
-        // ============================================================
+        // Mobile menu
         function toggleMobileMenu() {
             hamburger.classList.toggle('active');
             mobileNav.classList.toggle('open');
             mobileOverlay.classList.toggle('active');
         }
-
         function closeMobileMenu() {
             hamburger.classList.remove('active');
             mobileNav.classList.remove('open');
             mobileOverlay.classList.remove('active');
         }
-
         hamburger.addEventListener('click', toggleMobileMenu);
         mobileOverlay.addEventListener('click', closeMobileMenu);
 
-        // Mobile nav links
-        mobilePhotoLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeMobileMenu();
-            openPanel('photography');
-        });
-        mobileBtsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeMobileMenu();
-            openPanel('bts');
-        });
-        mobileStoriesLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeMobileMenu();
-            openPanel('stories');
-        });
-        mobileContactLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeMobileMenu();
-            openPanel('contact');
-        });
-        mobileAboutLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeMobileMenu();
-            // About us is currently a dummy link; we could scroll to home or add section later
-            closeAllPanels();
-            saveActivePanel(null);
-        });
+        mobilePhotoLink.addEventListener('click', (e) => { e.preventDefault(); closeMobileMenu(); openPanel('photography'); });
+        mobileBtsLink.addEventListener('click', (e) => { e.preventDefault(); closeMobileMenu(); openPanel('bts'); });
+        mobileStoriesLink.addEventListener('click', (e) => { e.preventDefault(); closeMobileMenu(); openPanel('stories'); });
+        mobileContactLink.addEventListener('click', (e) => { e.preventDefault(); closeMobileMenu(); openPanel('contact'); });
+        mobileAboutLink.addEventListener('click', (e) => { e.preventDefault(); closeMobileMenu(); closeAllPanels(); saveActivePanel(null); });
 
         // ============================================================
-        // VIDEO HOVER AUDIO TOGGLE
+        //  BTS VIDEO SOUND TOGGLE (hover & click)
         // ============================================================
         const videoWrappers = document.querySelectorAll('.video-wrapper');
         videoWrappers.forEach(wrapper => {
             const video = wrapper.querySelector('video');
-            wrapper.addEventListener('mouseenter', () => { if (video) video.muted = false; });
-            wrapper.addEventListener('mouseleave', () => { if (video) video.muted = true; });
+            const soundIcon = wrapper.querySelector('.sound-icon');
+            let unmuted = false; // track state
+
+            // Toggle mute on click
+            wrapper.addEventListener('click', () => {
+                if (video) {
+                    video.muted = !video.muted;
+                    unmuted = !video.muted;
+                    soundIcon.textContent = unmuted ? '🔊' : '🔇';
+                }
+            });
+
+            // On hover, unmute temporarily (but don't override if clicked)
+            wrapper.addEventListener('mouseenter', () => {
+                if (video && !unmuted) {
+                    video.muted = false;
+                    soundIcon.textContent = '🔊';
+                }
+            });
+            wrapper.addEventListener('mouseleave', () => {
+                if (video && !unmuted) {
+                    video.muted = true;
+                    soundIcon.textContent = '🔇';
+                }
+            });
         });
 
         // ============================================================
-        // DATE TOGGLE LOGIC (Contact form)
-        // ============================================================
-        const dateSelect = document.getElementById('dateConfirmed');
-        const confirmedDiv = document.getElementById('confirmedDateField');
-        const tentativeDiv = document.getElementById('tentativeDateField');
-
-        if (dateSelect) {
-            dateSelect.addEventListener('change', function() {
-                if (this.value === 'yes') {
-                    confirmedDiv.style.display = 'block';
-                    tentativeDiv.style.display = 'none';
-                } else if (this.value === 'no') {
-                    confirmedDiv.style.display = 'none';
-                    tentativeDiv.style.display = 'block';
-                } else {
-                    confirmedDiv.style.display = 'none';
-                    tentativeDiv.style.display = 'none';
-                }
-            });
-        }
-
-        // ============================================================
-        // CONTACT FORM SUBMISSION – show toast and close panel
+        //  CONTACT FORM – SUBMIT VIA AJAX
         // ============================================================
         const contactForm = document.getElementById('contact-form');
         contactForm.addEventListener('submit', function(e) {
-            // We don't prevent default – let the form submit to Formspree normally.
-            // But we want to close the panel and show toast immediately.
-            // However, Formspree will redirect to a thank‑you page unless we use AJAX.
-            // To avoid redirect and keep user on site, we'll use fetch() to submit.
             e.preventDefault();
-
             const formData = new FormData(contactForm);
             fetch(contactForm.action, {
                 method: 'POST',
@@ -1088,23 +1007,23 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // Success: close panel, show toast
                     closeAllPanels();
                     saveActivePanel(null);
                     showToast();
-                    contactForm.reset(); // clear fields
+                    contactForm.reset();
+                    // Reset date fields visibility
+                    document.getElementById('confirmedDateField').style.display = 'none';
+                    document.getElementById('tentativeDateField').style.display = 'none';
+                    document.getElementById('dateConfirmed').value = '';
                 } else {
                     alert('Something went wrong. Please try again.');
                 }
             })
-            .catch(error => {
-                alert('Network error. Please check your connection.');
-            });
+            .catch(() => alert('Network error. Check your connection.'));
         });
 
         function showToast() {
             toast.classList.add('show');
-            // Auto-hide after 30 seconds
             if (window.toastTimeout) clearTimeout(window.toastTimeout);
             window.toastTimeout = setTimeout(() => {
                 toast.classList.remove('show');
@@ -1112,10 +1031,40 @@
         }
 
         // ============================================================
-        // GOOGLE SHEETS – LOAD STORIES
+        //  DATE TOGGLE
+        // ============================================================
+        const dateSelect = document.getElementById('dateConfirmed');
+        const confirmedDiv = document.getElementById('confirmedDateField');
+        const tentativeDiv = document.getElementById('tentativeDateField');
+
+        dateSelect.addEventListener('change', function() {
+            if (this.value === 'yes') {
+                confirmedDiv.style.display = 'block';
+                tentativeDiv.style.display = 'none';
+            } else if (this.value === 'no') {
+                confirmedDiv.style.display = 'none';
+                tentativeDiv.style.display = 'block';
+            } else {
+                confirmedDiv.style.display = 'none';
+                tentativeDiv.style.display = 'none';
+            }
+        });
+
+        // ============================================================
+        //  GOOGLE SHEETS – LOAD STORIES
         // ============================================================
         function loadStories() {
             return new Promise((resolve, reject) => {
+                // Check if SHEET_ID is still default
+                if (SHEET_ID === 'YOUR_SHEET_ID_HERE') {
+                    storyGrid.innerHTML = `
+                        <p style="text-align:center; width:100%; color:#c0392b;">
+                            ⚠️ Please set your Google Sheet ID in the JavaScript (SHEET_ID variable).
+                        </p>`;
+                    resolve();
+                    return;
+                }
+
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
                 storyGrid.innerHTML = '<p style="text-align:center; width:100%;">Loading stories...</p>';
 
@@ -1126,9 +1075,7 @@
                     })
                     .then(csvText => {
                         const result = Papa.parse(csvText, { header: true, skipEmptyLines: true });
-                        if (result.errors.length > 0) {
-                            console.warn('CSV parsing errors:', result.errors);
-                        }
+                        if (result.errors.length) console.warn('CSV parsing errors:', result.errors);
                         const rows = result.data;
                         if (rows.length === 0) {
                             storyGrid.innerHTML = '<p style="text-align:center; width:100%;">No stories yet. Add some in your Google Sheet!</p>';
@@ -1140,7 +1087,10 @@
                     })
                     .catch(error => {
                         console.error('Error loading stories:', error);
-                        storyGrid.innerHTML = '<p style="text-align:center; width:100%; color:#999;">Could not load stories. Please check your Google Sheet is public and try again.</p>';
+                        storyGrid.innerHTML = `
+                            <p style="text-align:center; width:100%; color:#999;">
+                                Could not load stories. Please check your Google Sheet is public and the ID is correct.
+                            </p>`;
                         reject(error);
                     });
             });
@@ -1148,7 +1098,7 @@
 
         function renderStoryCards(rows) {
             storyGrid.innerHTML = '';
-            rows.forEach((row) => {
+            rows.forEach(row => {
                 const title = row.Title || 'Untitled';
                 const couple = row.Couple || 'A Wedding Story';
                 const cover = row.CoverImage || '';
@@ -1164,7 +1114,7 @@
                     </div>
                 `;
 
-                // Collect additional images/video columns
+                // Collect images & video
                 const images = [];
                 for (let i = 1; i <= 4; i++) {
                     const img = row[`Image${i}`];
@@ -1172,7 +1122,7 @@
                 }
                 const video = row.Video1 ? row.Video1.trim() : '';
 
-                card.addEventListener('click', function() {
+                card.addEventListener('click', () => {
                     openBlogModal(title, couple, cover, blogText, date, images, video);
                 });
 
@@ -1182,28 +1132,24 @@
 
         function openBlogModal(title, couple, cover, blogText, date, images, video) {
             let galleryHTML = '';
-            // Show images
-            if (images && images.length > 0) {
+            if (images && images.length) {
                 galleryHTML += '<div class="blog-gallery">';
                 images.forEach(img => {
-                    galleryHTML += `<img src="${img}" alt="${couple} gallery" onerror="this.style.display='none'">`;
+                    galleryHTML += `<img src="${img}" alt="${couple}" onerror="this.style.display='none'">`;
                 });
                 galleryHTML += '</div>';
             }
-            // Show video if present
             if (video) {
-                galleryHTML += `<div class="blog-gallery"><video src="${video}" controls muted playsinline style="width:100%; max-height:400px; object-fit:cover; border-radius:8px;"></video></div>`;
+                galleryHTML += `<div class="blog-gallery"><video src="${video}" controls muted playsinline style="width:100%; max-height:400px; object-fit:cover; border-radius:10px;"></video></div>`;
             }
 
             blogContent.innerHTML = `
                 <div class="blog-header">
                     <h2>${couple}</h2>
-                    <div class="meta">${date ? date : 'A Wedding Story'}</div>
+                    <div class="meta">${date || 'A Wedding Story'}</div>
                     <div class="hashtag">#${title.replace(/\s/g, '')}</div>
                 </div>
-                <div class="blog-text">
-                    ${blogText}
-                </div>
+                <div class="blog-text">${blogText}</div>
                 <img src="${cover}" alt="${couple}" class="blog-full-img" onerror="this.src='https://via.placeholder.com/1000x600?text=No+Image'">
                 ${galleryHTML}
             `;
@@ -1211,48 +1157,14 @@
         }
 
         // ============================================================
-        // RESTORE STATE ON PAGE LOAD
+        //  RESTORE STATE ON LOAD
         // ============================================================
         window.addEventListener('load', function() {
             const stored = getStoredPanel();
             if (stored) {
-                // Open the stored panel after a slight delay to let page render
-                setTimeout(() => {
-                    openPanel(stored);
-                }, 300);
+                setTimeout(() => openPanel(stored), 400);
             }
         });
-
-        // ============================================================
-        // INITIAL LOAD: if stories panel is opened, load data
-        // We also call loadStories() when stories-link is clicked (already handled in openPanel)
-        // For safety, if the page loads with stories active (from stored), we also need to ensure data loaded.
-        // But openPanel('stories') already calls loadStories().
-        // ============================================================
-
-        // To avoid double-load, we also call loadStories if the stored panel is stories.
-        // However openPanel triggers it, so fine.
-
-        // Also ensure that if the user clicks "About Us" (text-link) we just close panels.
-        document.querySelector('.nav-right a.text-link')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeAllPanels();
-            saveActivePanel(null);
-        });
-
-        // Mobile about link is already handled.
-        // We need to define mobileAboutLink – we don't have an ID, let's add one.
-        // In the mobile nav, the "About Us" link currently has no id. We'll add it dynamically.
-        // Actually in the HTML above I used id="mobile-about-link" – yes.
-        const mobileAboutLink = document.getElementById('mobile-about-link');
-        if (mobileAboutLink) {
-            mobileAboutLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                closeMobileMenu();
-                closeAllPanels();
-                saveActivePanel(null);
-            });
-        }
     </script>
 </body>
 </html>
