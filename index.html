@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>House Of Vows | Editorial & BTS</title>
+    <title>House Of Vows | Immersive Edition</title>
     <style>
         /* ----- IMPORTS & VARIABLES ----- */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap');
@@ -31,12 +31,27 @@
             line-height: 1.6;
             overflow-y: auto;
             overflow-x: hidden;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
+            cursor: none;
+            transition: background 0.6s, color 0.6s;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        /* Custom Cursor */
+        .cursor-ring {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        .cursor-ring.active {
+            width: 60px;
+            height: 60px;
+            background: rgba(201, 169, 110, 0.15);
         }
 
         h1, h2, h3, h4 {
@@ -73,6 +88,7 @@
             height: 55px;
             width: auto;
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
         }
         .logo-img:hover {
             transform: scale(1.08) rotate(-1deg);
@@ -270,7 +286,7 @@
         /* ----- HERO (home) ----- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -281,6 +297,7 @@
             position: relative;
             background-size: cover;
             background-attachment: fixed;
+            overflow: hidden;
         }
         .hero::after {
             content: '';
@@ -291,6 +308,7 @@
             height: 30%;
             background: linear-gradient(transparent, var(--bg-color));
             pointer-events: none;
+            z-index: 1;
         }
         .hero h1 {
             font-size: 4.8rem;
@@ -299,6 +317,8 @@
             max-width: 900px;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             animation: slideUp 1.2s ease forwards;
+            z-index: 2;
+            position: relative;
         }
         .hero p {
             font-size: 1.2rem;
@@ -309,11 +329,15 @@
             animation: slideUp 1.4s ease forwards;
             opacity: 0;
             animation-delay: 0.2s;
+            z-index: 2;
+            position: relative;
         }
         .hero .page-btn {
             animation: slideUp 1.6s ease forwards;
             opacity: 0;
             animation-delay: 0.4s;
+            z-index: 2;
+            position: relative;
         }
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(40px); }
@@ -355,6 +379,17 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
         }
 
+        /* Particle canvas */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         /* ----- SLIDE-UP PANELS ----- */
         .slide-panel {
             position: fixed;
@@ -363,16 +398,17 @@
             width: 100%;
             height: calc(100vh - var(--nav-height));
             z-index: 50;
-            transform: translateY(100%);
+            transform: translateY(100%) perspective(1000px) rotateX(5deg);
             transition: transform 1.4s cubic-bezier(0.77, 0, 0.175, 1);
             overflow-y: auto;
             overflow-x: hidden;
             scroll-behavior: smooth;
             background-color: var(--bg-color);
             will-change: transform;
+            backface-visibility: hidden;
         }
         .slide-panel.active {
-            transform: translateY(0);
+            transform: translateY(0) perspective(1000px) rotateX(0deg);
         }
 
         /* --- Panel Close Button (shared) --- */
@@ -519,7 +555,7 @@
             gap: 2rem;
             margin-top: 3rem;
         }
-        .portfolio-grid .portfolio-item {
+        .portfolio-item {
             position: relative;
             border-radius: 16px;
             overflow: hidden;
@@ -528,21 +564,23 @@
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
             will-change: transform;
             aspect-ratio: 4 / 3;
+            transform-style: preserve-3d;
+            perspective: 800px;
         }
-        .portfolio-grid .portfolio-item:hover {
-            transform: scale(1.04) translateY(-8px);
+        .portfolio-item:hover {
+            transform: scale(1.04) translateY(-8px) rotateX(2deg) rotateY(2deg);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
-        .portfolio-grid .portfolio-item img {
+        .portfolio-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .portfolio-grid .portfolio-item:hover img {
+        .portfolio-item:hover img {
             transform: scale(1.08);
         }
-        .portfolio-grid .portfolio-item .overlay {
+        .portfolio-item .overlay {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -554,11 +592,11 @@
             opacity: 0;
             transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease;
         }
-        .portfolio-grid .portfolio-item:hover .overlay {
+        .portfolio-item:hover .overlay {
             transform: translateY(0);
             opacity: 1;
         }
-        .portfolio-grid .portfolio-item .overlay span {
+        .portfolio-item .overlay span {
             font-size: 0.9rem;
             font-weight: 300;
             letter-spacing: 2px;
@@ -691,9 +729,11 @@
             position: relative;
             cursor: pointer;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 800px;
         }
         .video-wrapper:hover {
-            transform: scale(1.04) translateY(-6px);
+            transform: scale(1.04) translateY(-6px) rotateX(2deg) rotateY(2deg);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
         }
         .video-wrapper video {
@@ -728,10 +768,17 @@
             opacity: 0.6;
             pointer-events: none;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            transition: opacity 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
         }
         .video-wrapper:hover .sound-icon {
             opacity: 1;
+        }
+        .sound-icon.pulse {
+            animation: pulse 0.6s ease infinite alternate;
+        }
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.6; }
+            to { transform: scale(1.3); opacity: 1; }
         }
 
         /* ----- STORIES PANEL ----- */
@@ -779,6 +826,8 @@
             border-radius: 16px;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 800px;
         }
         .story-card::before {
             content: '';
@@ -796,7 +845,7 @@
             transform: scaleX(1);
         }
         .story-card:hover {
-            transform: translateY(-14px);
+            transform: translateY(-14px) rotateX(2deg) rotateY(2deg);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
         }
         .story-card h3 {
@@ -812,7 +861,7 @@
             width: 100%;
             height: 400px;
             overflow: hidden;
-            background: #eee;
+            background: #f8f8f8;
             border-radius: 12px;
             position: relative;
         }
@@ -1191,13 +1240,15 @@
             .right-panel { max-width: 100%; padding: 0 1.5rem 2rem; }
             .blog-gallery { grid-template-columns: 1fr; }
             .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-            .portfolio-grid .portfolio-item { aspect-ratio: 4 / 3; }
+            .portfolio-item { aspect-ratio: 4 / 3; }
             .video-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .cursor-ring { display: none; }
+            body { cursor: auto; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.4rem; }
             .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-            .portfolio-grid .portfolio-item { aspect-ratio: 4 / 3; }
+            .portfolio-item { aspect-ratio: 4 / 3; }
             .video-grid { grid-template-columns: 1fr 1fr; }
             .video-wrapper { aspect-ratio: 9 / 16; }
             .logo-img { height: 38px; }
@@ -1207,10 +1258,13 @@
 </head>
 <body>
 
+    <!-- Custom Cursor -->
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <!-- ===== NAVBAR ===== -->
     <nav id="main-nav">
         <a href="#home" id="home-link" style="display:flex; align-items:center; text-decoration:none;">
-            <img src="logo.png" alt="House Of Vows" class="logo-img" style="height:55px; width:auto;">
+            <img src="logo.png" alt="House Of Vows" class="logo-img" id="logo" style="height:55px; width:auto;">
         </a>
         <div class="nav-center">
             <a id="photo-link">Photography</a>
@@ -1238,6 +1292,7 @@
 
     <!-- ===== HERO (Home) ===== -->
     <header class="hero" id="home">
+        <canvas id="particles"></canvas>
         <h1>Raw Moments.<br>Editorial Aesthetics.</h1>
         <p>Redefining wedding storytelling with same-day digital diaries and timeless cinematic films.</p>
         <a href="#" class="page-btn" id="home-contact-btn">View The Chapter</a>
@@ -1382,6 +1437,9 @@
     <!-- ===== BACK TO TOP ===== -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
+    <!-- ===== CONFETTI CANVAS (hidden, used for burst) ===== -->
+    <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9998;"></canvas>
+
     <!-- PAPA PARSE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js">
     </script>
@@ -1402,6 +1460,7 @@
         const storiesLink = document.getElementById('stories-link');
         const aboutLink = document.getElementById('about-link');
         const contactLink = document.getElementById('contact-link');
+        const logo = document.getElementById('logo');
 
         const photoPage = document.getElementById('photography-page');
         const btsPage = document.getElementById('bts-page');
@@ -1438,6 +1497,168 @@
         const mobileContactLink = document.getElementById('mobile-contact-link');
 
         const backToTop = document.getElementById('backToTop');
+        const cursorRing = document.getElementById('cursorRing');
+
+        // ============================================================
+        //  PARTICLES (Canvas)
+        // ============================================================
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            const hero = document.querySelector('.hero');
+            canvas.width = hero.offsetWidth;
+            canvas.height = hero.offsetHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update(mouseX, mouseY) {
+                // gentle mouse influence
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    const force = (150 - dist) / 150 * 0.3;
+                    this.x -= dx * force * 0.02;
+                    this.y -= dy * force * 0.02;
+                }
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 120; i++) {
+            particles.push(new Particle());
+        }
+
+        let mouseX = canvas.width / 2,
+            mouseY = canvas.height / 2;
+        document.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+        });
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update(mouseX, mouseY);
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // ============================================================
+        //  CONFETTI (surprise burst)
+        // ============================================================
+        const confettiCanvas = document.getElementById('confettiCanvas');
+        const cctx = confettiCanvas.getContext('2d');
+        let confettiPieces = [];
+        let confettiActive = false;
+
+        function resizeConfetti() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeConfetti);
+        resizeConfetti();
+
+        class ConfettiPiece {
+            constructor() {
+                this.x = Math.random() * confettiCanvas.width;
+                this.y = -10;
+                this.size = Math.random() * 8 + 4;
+                this.speedY = Math.random() * 6 + 3;
+                this.speedX = (Math.random() - 0.5) * 4;
+                this.rotation = Math.random() * 360;
+                this.rotSpeed = (Math.random() - 0.5) * 10;
+                this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+                this.life = 1;
+                this.decay = 0.005 + Math.random() * 0.01;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotSpeed;
+                this.life -= this.decay;
+                if (this.life < 0) this.life = 0;
+            }
+            draw() {
+                cctx.save();
+                cctx.translate(this.x, this.y);
+                cctx.rotate((this.rotation * Math.PI) / 180);
+                cctx.globalAlpha = this.life;
+                cctx.fillStyle = this.color;
+                cctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+                cctx.restore();
+            }
+        }
+
+        function burstConfetti() {
+            for (let i = 0; i < 150; i++) {
+                confettiPieces.push(new ConfettiPiece());
+            }
+            if (!confettiActive) {
+                confettiActive = true;
+                animateConfetti();
+            }
+        }
+
+        function animateConfetti() {
+            cctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            let alive = false;
+            confettiPieces.forEach(p => {
+                p.update();
+                p.draw();
+                if (p.life > 0) alive = true;
+            });
+            confettiPieces = confettiPieces.filter(p => p.life > 0);
+            if (alive || confettiPieces.length > 0) {
+                requestAnimationFrame(animateConfetti);
+            } else {
+                confettiActive = false;
+                cctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            }
+        }
+
+        // Trigger confetti on logo click and on "View The Chapter" click
+        logo.addEventListener('click', burstConfetti);
+        document.getElementById('home-contact-btn').addEventListener('click', burstConfetti);
+
+        // ============================================================
+        //  CUSTOM CURSOR
+        // ============================================================
+        document.addEventListener('mousemove', (e) => {
+            cursorRing.style.left = e.clientX + 'px';
+            cursorRing.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button, .story-card, .portfolio-item, .video-wrapper').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorRing.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('active'));
+        });
 
         // ============================================================
         //  STATE PERSISTENCE
@@ -1505,11 +1726,6 @@
             closeAllPanels();
             saveActivePanel(null);
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        document.getElementById('home-contact-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            openPanel('contact');
         });
 
         // Close buttons for all panels
@@ -1949,7 +2165,6 @@
             storyGrid.innerHTML =
                 `<div style="grid-column:1/-1; display:flex; justify-content:center; padding:40px;"><div class="loader"></div></div>`;
 
-            // Use the published CSV URL
             fetch(CSV_URL)
                 .then(response => {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -1979,7 +2194,7 @@
                 row.Location.trim().toLowerCase() === 'background');
             if (homeRow && homeRow.MediaUrl) {
                 document.querySelector('.hero').style.backgroundImage =
-                    `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('${homeRow.MediaUrl}')`;
+                    `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('${homeRow.MediaUrl}')`;
             }
 
             // 2. PHOTOGRAPHY PANEL BACKGROUND
@@ -2018,6 +2233,17 @@
                     item.appendChild(overlay);
                     item.addEventListener('click', () => {
                         openLightbox(imgUrls, index);
+                    });
+                    // 3D tilt effect
+                    item.addEventListener('mousemove', (e) => {
+                        const rect = item.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) / rect.width - 0.5;
+                        const y = (e.clientY - rect.top) / rect.height - 0.5;
+                        item.style.transform =
+                            `scale(1.04) translateY(-8px) rotateX(${y * 6}deg) rotateY(${x * 6}deg)`;
+                    });
+                    item.addEventListener('mouseleave', () => {
+                        item.style.transform = '';
                     });
                     portfolioGrid.appendChild(item);
                 });
@@ -2092,6 +2318,18 @@
                         openBlogModal(title, couple, cover, blogText, date, images, video);
                     });
 
+                    // 3D tilt effect
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) / rect.width - 0.5;
+                        const y = (e.clientY - rect.top) / rect.height - 0.5;
+                        card.style.transform =
+                            `translateY(-14px) rotateX(${y * 4}deg) rotateY(${x * 4}deg)`;
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = '';
+                    });
+
                     storyGrid.appendChild(card);
                 });
             }
@@ -2128,7 +2366,7 @@
         }
 
         // ============================================================
-        //  BTS VIDEO SOUND TOGGLE (Event Delegation)
+        //  BTS VIDEO SOUND TOGGLE + AUDIO VISUALISER (pulse)
         // ============================================================
         btsGrid.addEventListener('click', (e) => {
             const wrapper = e.target.closest('.video-wrapper');
@@ -2137,7 +2375,16 @@
             const soundIcon = wrapper.querySelector('.sound-icon');
             if (video) {
                 video.muted = !video.muted;
-                if (soundIcon) soundIcon.textContent = video.muted ? '🔇' : '🔊';
+                if (soundIcon) {
+                    soundIcon.textContent = video.muted ? '🔇' : '🔊';
+                    if (!video.muted) {
+                        soundIcon.classList.add('pulse');
+                        // Remove pulse after a few seconds (or keep it while audio plays)
+                        // For now, we'll keep it pulsing as long as unmuted
+                    } else {
+                        soundIcon.classList.remove('pulse');
+                    }
+                }
                 video.dataset.manualUnmuted = video.muted ? 'false' : 'true';
             }
         });
@@ -2149,7 +2396,10 @@
             const soundIcon = wrapper.querySelector('.sound-icon');
             if (video && video.muted && video.dataset.manualUnmuted !== 'true') {
                 video.muted = false;
-                if (soundIcon) soundIcon.textContent = '🔊';
+                if (soundIcon) {
+                    soundIcon.textContent = '🔊';
+                    soundIcon.classList.add('pulse');
+                }
             }
         }, true);
 
@@ -2160,7 +2410,10 @@
             const soundIcon = wrapper.querySelector('.sound-icon');
             if (video && video.dataset.manualUnmuted !== 'true' && !video.muted) {
                 video.muted = true;
-                if (soundIcon) soundIcon.textContent = '🔇';
+                if (soundIcon) {
+                    soundIcon.textContent = '🔇';
+                    soundIcon.classList.remove('pulse');
+                }
             }
         }, true);
 
