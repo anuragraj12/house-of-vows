@@ -1180,9 +1180,9 @@
 
     <script>
         // ============================================================
-        //  CONFIGURATION – YOUR GOOGLE SHEET ID
+        //  CONFIGURATION – YOUR PUBLISHED GOOGLE SHEET URL
         // ============================================================
-        const SHEET_ID = '1dJYZH6ER-s2yPBCeSexDjrxUJflHVlUVkkQvD454E2w';
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSdH_fiPHXdYhbRK8Fpa_OKAr-u7gXPFOfXFp_mJKGKx2LpzsCvX7ZU6auR5669WwpbfQt3KmYSVBY2/pub?output=csv';
 
         // ============================================================
         //  DOM REFS
@@ -1580,7 +1580,7 @@
         });
 
         // ============================================================
-        //  GOOGLE SHEETS – LOAD DATA WITH FALLBACK & DEBUG LOGS
+        //  GOOGLE SHEETS – LOAD DATA WITH FALLBACK
         // ============================================================
         let allData = [];
 
@@ -1592,6 +1592,12 @@
             Type: 'photography',
             Location: 'background',
             MediaUrl: 'house of vows/Image2.jpg'
+        }, {
+            Type: 'portfolio',
+            Location: 'gallery',
+            MediaUrl: 'house of vows/rav2.JPG',
+            Title: 'Golden Hour Bliss',
+            Order: '0'
         }, {
             Type: 'portfolio',
             Location: 'gallery',
@@ -1735,10 +1741,8 @@
             storyGrid.innerHTML =
                 `<div style="grid-column:1/-1; display:flex; justify-content:center; padding:40px;"><div class="loader"></div></div>`;
 
-            const csvUrl =
-                `https://docs.google.com/spreadsheets/d/e/2PACX-1vSdH_fiPHXdYhbRK8Fpa_OKAr-u7gXPFOfXFp_mJKGKx2LpzsCvX7ZU6auR5669WwpbfQt3KmYSVBY2/pub?output=csv`;
-
-            fetch(csvUrl)
+            // Use the published CSV URL
+            fetch(CSV_URL)
                 .then(response => {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     return response.text();
