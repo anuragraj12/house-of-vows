@@ -311,6 +311,25 @@
             transform: translateY(0);
         }
 
+        /* --- Panel Close Button (shared) --- */
+        .panel-close {
+            position: sticky;
+            top: 20px;
+            float: right;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 10;
+            background: var(--bg-color);
+            padding: 0 10px;
+            line-height: 1;
+            transition: transform 0.3s;
+            border: none;
+        }
+        .panel-close:hover {
+            transform: scale(1.2) rotate(90deg);
+        }
+
         /* ----- PHOTOGRAPHY PANEL ----- */
         .photo-hero {
             height: 100vh;
@@ -385,6 +404,7 @@
             min-height: 100vh;
             background-color: var(--bg-color);
             padding: 4rem 10% 5rem 10%;
+            position: relative;
         }
         .photo-portfolio-section h3 {
             font-size: 3rem;
@@ -1017,6 +1037,7 @@
 
     <!-- ===== PHOTOGRAPHY PANEL ===== -->
     <div class="slide-panel" id="photography-page">
+        <button class="panel-close" id="close-photography">×</button>
         <div class="photo-hero" id="photo-hero">
             <div class="photo-title"><h2>The Photography Edit</h2></div>
             <div class="photo-bottom-content">
@@ -1030,7 +1051,6 @@
                 </div>
             </div>
         </div>
-        <!-- Portfolio Gallery now lives here -->
         <div class="photo-portfolio-section" id="photo-portfolio-section">
             <h3>Our Portfolio</h3>
             <div class="portfolio-grid" id="portfolio-grid">
@@ -1041,6 +1061,7 @@
 
     <!-- ===== BTS PANEL ===== -->
     <div class="slide-panel" id="bts-page">
+        <button class="panel-close" id="close-bts">×</button>
         <div class="bts-hero">
             <h2>The Digital Diary</h2>
             <p>Your personal paparazzi. We deliver viral-ready reels directly to your phone within 24 hours. <strong>Hover or click a video to toggle sound.</strong></p>
@@ -1052,6 +1073,7 @@
 
     <!-- ===== STORIES PANEL ===== -->
     <div class="slide-panel" id="stories-page">
+        <button class="panel-close" id="close-stories">×</button>
         <div class="stories-container">
             <h2>Our Chapters</h2>
             <div class="story-grid" id="story-grid">
@@ -1062,6 +1084,7 @@
 
     <!-- ===== ABOUT PANEL ===== -->
     <div class="slide-panel" id="about-page">
+        <button class="panel-close" id="close-about">×</button>
         <div class="about-container">
             <h2>About House Of Vows</h2>
             <div class="about-content" id="about-content">
@@ -1228,7 +1251,6 @@
             contactPanel.classList.remove('active');
             navBar.classList.remove('nav-inverted');
             closeMobileMenu();
-            // Pause all BTS videos when closing BTS page
             pauseAllBTSVideos();
         }
 
@@ -1246,7 +1268,6 @@
                 panel.classList.add('active');
                 navBar.classList.add('nav-inverted');
                 saveActivePanel(panelId);
-                // If BTS panel is opened, initialise video visibility
                 if (panelId === 'bts') {
                     setTimeout(() => {
                         initBTSObservers();
@@ -1283,6 +1304,15 @@
             openPanel('contact');
         });
 
+        // Close buttons for all panels
+        document.getElementById('close-photography').addEventListener('click', () => { closeAllPanels();
+            saveActivePanel(null); });
+        document.getElementById('close-bts').addEventListener('click', () => { closeAllPanels();
+            saveActivePanel(null); });
+        document.getElementById('close-stories').addEventListener('click', () => { closeAllPanels();
+            saveActivePanel(null); });
+        document.getElementById('close-about').addEventListener('click', () => { closeAllPanels();
+            saveActivePanel(null); });
         closeContactBtn.addEventListener('click', () => { closeAllPanels();
             saveActivePanel(null); });
         closeBlogBtn.addEventListener('click', () => { blogModal.classList.remove('active'); });
@@ -1290,17 +1320,14 @@
             if (e.target === blogModal) blogModal.classList.remove('active');
         });
 
-        // Watch Portfolio button: opens photography panel and scrolls to portfolio
         scrollArrow.addEventListener('click', (e) => {
             e.preventDefault();
-            // If photography panel is already active, just scroll
             if (photoPage.classList.contains('active')) {
                 const grid = document.getElementById('portfolio-grid');
                 if (grid) {
                     grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             } else {
-                // Open panel, then scroll after transition
                 openPanel('photography');
                 setTimeout(() => {
                     const grid = document.getElementById('portfolio-grid');
@@ -1418,9 +1445,8 @@
             const videos = getAllBTSVideos();
             videos.forEach(v => {
                 v.pause();
-                v.currentTime = 0; // reset to start
+                v.currentTime = 0;
             });
-            // Disconnect observers to avoid memory leaks
             btsObservers.forEach(obs => obs.disconnect());
             btsObservers = [];
         }
@@ -1447,7 +1473,6 @@
         }
 
         function initBTSObservers() {
-            // Clean up old observers
             btsObservers.forEach(obs => obs.disconnect());
             btsObservers = [];
 
@@ -1470,7 +1495,6 @@
             videos.forEach(v => observer.observe(v));
             btsObservers.push(observer);
 
-            // Also observe the grid itself to detect panel scroll
             const grid = document.getElementById('bts-grid');
             if (grid) {
                 const scrollObserver = new IntersectionObserver(() => {
@@ -1482,7 +1506,6 @@
                 btsObservers.push(scrollObserver);
             }
 
-            // Visibility change: pause all if tab hidden
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden) {
                     pauseAllBTSVideos();
@@ -1493,20 +1516,12 @@
                 }
             }, { once: false });
 
-            // Scroll listener inside BTS panel to refresh visibility
             btsPage.addEventListener('scroll', () => {
                 if (btsPage.classList.contains('active')) {
                     playVisibleBTSVideos();
                 }
             }, { passive: true });
         }
-
-        // Override closeAllPanels to also handle BTS
-        const originalCloseAllPanels = closeAllPanels;
-        closeAllPanels = function() {
-            originalCloseAllPanels();
-            pauseAllBTSVideos();
-        };
 
         // ============================================================
         //  CONTACT FORM – AJAX
@@ -1565,11 +1580,10 @@
         });
 
         // ============================================================
-        //  GOOGLE SHEETS – LOAD DATA WITH FALLBACK
+        //  GOOGLE SHEETS – LOAD DATA WITH FALLBACK & DEBUG LOGS
         // ============================================================
         let allData = [];
 
-        // Fallback sample data (so site works even if sheet fails)
         const FALLBACK_DATA = [{
             Type: 'home',
             Location: 'background',
@@ -1687,9 +1701,9 @@
             Type: 'story',
             Location: 'blog',
             MediaUrl: 'house of vows/image3.jpg',
-            Title: 'Anurag & Garima',
+            Title: 'AGWedding',
             Couple: 'Anurag & Garima',
-            BlogText: 'A beautiful union of two souls deeply in love. Anurag and Garima\'s celebration was an incredible blend of raw emotion, modern editorial aesthetics, and grand traditions, making their wedding weekend an unforgettable chapter.',
+            BlogText: 'A beautiful union...',
             Date: '26 May 2026',
             Image1: 'house of vows/imagepre1.JPG',
             Image2: 'house of vows/imagepre2.JPG',
@@ -1700,12 +1714,12 @@
         }, {
             Type: 'story',
             Location: 'blog',
-            MediaUrl: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop',
-            Title: 'Rohan & Aisha',
-            Couple: 'Rohan & Aisha',
-            BlogText: 'A breathtaking destination wedding filled with love, laughter, and pure joy. Set against a stunning coastal backdrop, their celebration was the perfect blend of adventure and intimacy.',
+            MediaUrl: 'house of vows/rav1.JPG',
+            Title: 'RaSa Forever',
+            Couple: 'Ravi & Saloni',
+            BlogText: 'A breathtaking destination wedding...',
             Date: '12 Dec 2026',
-            Image1: 'https://picsum.photos/seed/rohan1/600/400',
+            Image1: 'house of vows/rav1.JPG',
             Image2: 'https://picsum.photos/seed/rohan2/600/400',
             Image3: 'https://picsum.photos/seed/rohan3/600/400',
             Image4: 'https://picsum.photos/seed/rohan4/600/400',
@@ -1714,7 +1728,6 @@
         }];
 
         function loadAllData() {
-            // Show loading spinners
             portfolioGrid.innerHTML =
                 `<div style="grid-column:1/-1; display:flex; justify-content:center; padding:40px;"><div class="loader"></div></div>`;
             btsGrid.innerHTML =
@@ -1722,7 +1735,6 @@
             storyGrid.innerHTML =
                 `<div style="grid-column:1/-1; display:flex; justify-content:center; padding:40px;"><div class="loader"></div></div>`;
 
-            // Try fetching from Google Sheets
             const csvUrl =
                 `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
 
@@ -1734,16 +1746,16 @@
                 .then(csvText => {
                     const result = Papa.parse(csvText, { header: true, skipEmptyLines: true });
                     if (result.errors.length) console.warn('CSV parsing errors:', result.errors);
-                    allData = result.data;
-                    allData = allData.filter(row => row.Type && row.Type.trim());
+                    allData = result.data.filter(row => row.Type && row.Type.trim());
+                    console.log('📊 All data from sheet:', allData);
                     if (allData.length === 0) {
-                        console.log('Sheet empty, using fallback');
+                        console.log('⚠️ Sheet empty, using fallback');
                         allData = FALLBACK_DATA;
                     }
                     renderAll();
                 })
                 .catch(error => {
-                    console.error('Error fetching sheet, using fallback:', error);
+                    console.error('❌ Error fetching sheet, using fallback:', error);
                     allData = FALLBACK_DATA;
                     renderAll();
                 });
@@ -1766,11 +1778,13 @@
                     `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('${photoBgRow.MediaUrl}')`;
             }
 
-            // 3. PORTFOLIO GALLERY (now inside Photography panel)
+            // 3. PORTFOLIO GALLERY
             const portfolioRows = allData
                 .filter(row => row.Type && row.Type.trim().toLowerCase() === 'portfolio' && row.Location && row.Location
                     .trim().toLowerCase() === 'gallery' && row.MediaUrl)
                 .sort((a, b) => (parseInt(a.Order) || 0) - (parseInt(b.Order) || 0));
+
+            console.log('🖼️ Portfolio rows found:', portfolioRows);
 
             portfolioGrid.innerHTML = '';
             if (portfolioRows.length === 0) {
@@ -1811,7 +1825,6 @@
                     `;
                     btsGrid.appendChild(wrapper);
                 });
-                // Initialise BTS observers after videos are added
                 setTimeout(() => {
                     if (btsPage.classList.contains('active')) {
                         initBTSObservers();
@@ -1825,6 +1838,8 @@
                 .filter(row => row.Type && row.Type.trim().toLowerCase() === 'story' && row.Location && row.Location.trim()
                     .toLowerCase() === 'blog' && row.MediaUrl)
                 .sort((a, b) => (parseInt(a.Order) || 0) - (parseInt(b.Order) || 0));
+
+            console.log('📖 Story rows found:', storyRows);
 
             storyGrid.innerHTML = '';
             if (storyRows.length === 0) {
